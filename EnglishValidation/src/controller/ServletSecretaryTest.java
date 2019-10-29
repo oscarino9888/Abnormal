@@ -16,7 +16,7 @@ import controller.ServletStudentTest.MockObject;
 class ServletSecretaryTest {
 
 	public class MockObject {
-		public MockObject (String idRequest, String cfu,String flag) {
+		public MockObject (String idRequest, String cfu,String flag) { //funziona si può fare
 			this.idRequest = idRequest;
 			this.cfu = cfu;
 			this.flag=flag;
