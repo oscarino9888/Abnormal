@@ -1,4 +1,4 @@
-package controller; //cosa brutta
+package controller;
 
 import interfacce.UserInterface;
 import java.io.IOException;
