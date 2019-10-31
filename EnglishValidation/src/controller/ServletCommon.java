@@ -66,8 +66,8 @@ public class ServletCommon extends HttpServlet {
     if (conn != null) {
 
       if (flag == 1) { // login
-        String email = request.getParameter("password");
-        String password = new Utils().generatePwd(request.getParameter("email"));
+        String email = request.getParameter("email");
+        String password = new Utils().generatePwd(request.getParameter("password"));
         try {
           sql =
               " SELECT  name, surname, sex, user_type FROM user "
