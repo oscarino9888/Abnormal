@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"
-	import="controller.CheckSession ,model.Utils"%>
+	import="controller.CheckSession,model.Utils"%>
 
 <%
   String pageName = request.getParameter("pageName");
