@@ -3,7 +3,7 @@ package model;
 import interfacce.UserInterface;
 
 public class Admin implements UserInterface {
-
+//PUSH HERMES_BRANCH COMMENT IN MODEL/ANMIN.JAVA
   /**
    * Variables.
    */
