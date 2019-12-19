@@ -10,7 +10,7 @@ import model.Secretary;
 import model.Student;
 
 
-
+//ciao!
 public class CheckSession implements Serializable {
 
   /**
