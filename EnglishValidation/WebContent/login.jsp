@@ -39,7 +39,7 @@
 										<p class="text-center">Compilare username e password per
 											accedere</p>
 									</div>
-									<form id="login">
+									<form id="login" >
 										<div class="form-group">
 											<input type="email" class="form-control" id="email"
 												placeholder="Email" minlength="6" required>

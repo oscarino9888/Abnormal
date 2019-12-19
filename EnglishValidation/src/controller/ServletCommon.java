@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Admin;
 import model.Secretary;
 import model.Student;
 import model.Utils;
@@ -53,6 +54,7 @@ public class ServletCommon extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+	  
     Integer result = 0;
     String error = "";
     String content = "";
@@ -85,15 +87,17 @@ public class ServletCommon extends HttpServlet {
               String name = r.getString("name");
               String surname = r.getString("surname");
               char sex = r.getString("sex").charAt(0);
-
               int userType = r.getInt("user_type");
-              if (userType == 1) { // Profilo Student
+              if (userType == 0) { // Profilo Student
+            	  System.out.println("Login in funzione,utente studente");
                 redirect = request.getContextPath() + "/_areaStudent/viewRequest.jsp";
                 user = new Student(email, name, surname, sex, password, userType);
-              } else if (userType == 0) { // Profilo Secretary
+              } else if (userType == 1) { // Profilo Secretary
+            	  System.out.println("Login in funzione,utente segreteria");
                 redirect = request.getContextPath() + "/_areaSecretary/viewRequest.jsp";
                 user = new Secretary(email, name, surname, sex, password, userType);
               } else if (userType == 2) { // Profilo Admin
+            	  System.out.println("Login in funzione,utente admin");
                 redirect = request.getContextPath() + "/_areaAdmin/viewRequest.jsp";
                 user = new Admin(email, name, surname, sex, password, userType);
               }
