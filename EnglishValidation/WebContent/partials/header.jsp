@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"
-	import="controller.CheckSession ,model.Utils"%>
+	import="controller.CheckSession,model.Utils"%>
 
 <%
   String pageName = request.getParameter("pageName");
@@ -23,7 +23,11 @@
           + "/viewRequest.jsp\">Richieste</a></li>";
       menu +=
           "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
+      menu += "<li><a href=\"" + request.getContextPath() + "/_areaAdmin/BanUserJSP.jsp\">Sospendi utente</a></li>";
     }
+    
+    
+    
   } else if (pageFolder.equals("_areaSecretary")) { //se stiamo in una pagina dell'area segreteria
 	  logoRedirect = request.getContextPath()+"/_areaSecretary/viewRequest.jsp";
   

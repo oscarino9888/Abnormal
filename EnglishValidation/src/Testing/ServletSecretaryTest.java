@@ -1,4 +1,4 @@
-package controller;
+package Testing;
 
 import static org.junit.Assert.fail;
 
@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import controller.ServletStudentTest.MockObject;
+import Testing.ServletStudentTest.MockObject;
+import controller.DbConnection;
+import controller.ServletSecretary;
 
 class ServletSecretaryTest {
 

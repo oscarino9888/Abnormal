@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import controller.Attached;
-import controller.Ente;
-
 public class Request {
   private int idRequest;
   private int requestCfu;
