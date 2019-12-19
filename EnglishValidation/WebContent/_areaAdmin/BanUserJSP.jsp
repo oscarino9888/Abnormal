@@ -4,7 +4,7 @@
 	import="java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
 
 <%
-	String pageName = "viewRequest.jsp";
+	String pageName = "BanUserJSP.jsp";
 	String pageFolder = "_areaAdmin";
 	CheckSession ck = new CheckSession(pageFolder, pageName, request.getSession());
 	if(!ck.isAllowed()){
