@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Request;
 import model.Student;
-import model.SystemAttribute;
 import model.Utils;
 
 import org.eclipse.jdt.internal.compiler.env.IModule;

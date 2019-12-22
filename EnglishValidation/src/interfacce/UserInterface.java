@@ -1,5 +1,7 @@
 package interfacce;
 
+import java.sql.Date;
+
 public interface UserInterface {
   // get
   public String getEmail();
@@ -26,5 +28,7 @@ public interface UserInterface {
   public void setPassword(String p);
 
   public void setUserType(int u);
+  
+ 
 
 }

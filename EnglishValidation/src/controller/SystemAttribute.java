@@ -1,6 +1,5 @@
-package model;
+package controller;
 
-import controller.DbConnection; 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;

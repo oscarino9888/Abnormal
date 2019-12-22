@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 import interfacce.UserInterface;
 
 public class Student implements UserInterface {
@@ -9,6 +11,7 @@ public class Student implements UserInterface {
   private char sex;
   private String password;
   private int userType;
+  private Date ban;
 
   public Student() {}
 
@@ -87,4 +90,13 @@ public class Student implements UserInterface {
     this.userType = userType;
   }
 
+ 
+  public void setBan(Date m) {
+	  this.ban=m;
+}
+
+  public Date getBan() {
+
+	  return this.ban;
+  }
 }

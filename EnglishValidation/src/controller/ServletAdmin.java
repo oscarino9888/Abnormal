@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Request;
-import model.SystemAttribute;
+
 import org.json.simple.JSONObject;
 import interfacce.UserInterface;
 import sun.util.calendar.LocalGregorianCalendar.Date;

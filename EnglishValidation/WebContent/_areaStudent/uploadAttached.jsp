@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"
-	import="controller.CheckSession, model.SystemAttribute,model.Utils, controller.DbConnection, java.sql.Connection, java.sql.ResultSet, java.sql.Statement, java.text.SimpleDateFormat"%>
+	import="controller.CheckSession,controller.SystemAttribute,model.Utils, controller.DbConnection, java.sql.Connection, java.sql.ResultSet, java.sql.Statement, java.text.SimpleDateFormat"%>
 
 <%
 	String pageName = "uploadAttached.jsp";
