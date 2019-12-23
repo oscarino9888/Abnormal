@@ -26,9 +26,19 @@
       menu += "<li><a href=\"" + request.getContextPath() + "/_areaAdmin/BanUserJSP.jsp\">Sospendi utente</a></li>";
     }
     
+    else if(pageName.equals("BanUserJSP.jsp")){
+    	
+          menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
+              + "/viewRequest.jsp\">Richieste</a></li>";
+          menu +=
+              "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
+          menu += "<li><a href=\"" + request.getContextPath() + "/_areaAdmin/BanUserJSP.jsp\">Sospendi utente</a></li>";
+    }
+    }
     
     
-  } else if (pageFolder.equals("_areaSecretary")) { //se stiamo in una pagina dell'area segreteria
+    
+   else if (pageFolder.equals("_areaSecretary")) { //se stiamo in una pagina dell'area segreteria
 	  logoRedirect = request.getContextPath()+"/_areaSecretary/viewRequest.jsp";
   
     if (pageName.equals("viewRequest.jsp")) {

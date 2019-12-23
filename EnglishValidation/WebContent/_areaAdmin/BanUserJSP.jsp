@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1" import="controller.CheckSession"%>
 <%@ page
-	import="java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
+	import="controller.StudentDatabase,model.Student,java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
 
 <%
 	String pageName = "BanUserJSP.jsp";
 	String pageFolder = "_areaAdmin";
-	//ArrayList<Student> student = new ArrayList<Student>();
-	//student.
+	ArrayList<Student> student = new ArrayList<Student>();
+	StudentDatabase datb=new StudentDatabase();
+	student=datb.getStudents();
+			
+	
+	
 	CheckSession ck = new CheckSession(pageFolder, pageName, request.getSession());
 	if(!ck.isAllowed()){
 	  response.sendRedirect(request.getContextPath()+ck.getUrlRedirect());  
