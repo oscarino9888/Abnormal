@@ -54,7 +54,29 @@
 										</tr>
 									</thead>
 									<tbody id="bodyAdminTable">
+                                    <%
+							//int [] itera;
+								//itera = new int [100];
 
+								for (int i = 0; i < student.size(); i++) {
+
+									
+						%>
+						<tr>
+							<td><%=student.get(i).getEmail()%></td>
+							<td><%=student.get(i).getName()%></td>
+							<td><%=student.get(i).getSurname()%></td>
+							<td><%=student.get(i).getSex()%></td>
+							<%if(student.get(i).getBan()==null){ %>
+							<td> Account non sospeso </td>
+							<%} else {%>
+							<td><%=student.get(i).getBan()%></td>
+							<% }%>
+						</tr>
+						
+						<%
+							}
+						%>
 									</tbody>
 								</table>
 								
@@ -72,8 +94,7 @@
 
 	<jsp:include page="/partials/includes.jsp" />
 	
-	<script
-		src="<%= request.getContextPath() %>/js/pages/scripts_viewRequestAdmin.js"></script>
+
 </body>
 </html>
 
