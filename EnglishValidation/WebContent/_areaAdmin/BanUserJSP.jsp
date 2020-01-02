@@ -50,6 +50,9 @@
 											<th class="text-center">Cognome</th>
 											<th class="text-center">Sesso</th>
 											<th class="text-center">Stato di Ban</th>
+											<th class="text-center">Sospensione Desiderata</th>
+											<th class="text-center"></th>
+											
 										
 										</tr>
 									</thead>
@@ -62,6 +65,7 @@
 
 									
 						%>
+						<form id="insertform" action="ServletBan" method="post">
 						<tr>
 							<td><%=student.get(i).getEmail()%></td>
 							<td><%=student.get(i).getName()%></td>
@@ -72,6 +76,11 @@
 							<%} else {%>
 							<td><%=student.get(i).getBan()%></td>
 							<% }%>
+							<td><input name="ban_user" type="date" id="durataban" placeholder="Durata ban"></td>
+							<input type="hidden" value="<%=student.get(i).getEmail() %>">
+							<td><input type="submit"></td>
+							</form>
+							
 						</tr>
 						
 						<%
