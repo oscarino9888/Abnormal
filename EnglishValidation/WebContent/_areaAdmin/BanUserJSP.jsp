@@ -65,7 +65,7 @@
 
 									
 						%>
-						<form id="insertform" action="ServletBan" method="post">
+						<form id="insertform" action="/EnglishValidation/ServletBan" method="post">
 						<tr>
 							<td><%=student.get(i).getEmail()%></td>
 							<td><%=student.get(i).getName()%></td>
@@ -77,7 +77,7 @@
 							<td><%=student.get(i).getBan()%></td>
 							<% }%>
 							<td><input name="ban_user" type="date" id="durataban" placeholder="Durata ban"></td>
-							<input type="hidden" value="<%=student.get(i).getEmail() %>">
+							<input type="hidden" value="<%=student.get(i).getEmail() %>" name="email">
 							<td><input type="submit"></td>
 							</form>
 							
