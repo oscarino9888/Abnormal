@@ -54,12 +54,28 @@
    else if (pageFolder.equals("_areaSecretary")) { //se stiamo in una pagina dell'area segreteria
 	  logoRedirect = request.getContextPath()+"/_areaSecretary/viewRequest.jsp";
   
+   
     if (pageName.equals("viewRequest.jsp")) {
       menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
           + "/viewRequest.jsp\">Richieste</a></li>";
       menu +=
           "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
+      menu +=
+              "<li><a href=\"" + request.getContextPath() + "/_areaSecretary/segnalazioniFromStudent.jsp\">Segnalazioni</a></li>";
+          
     }
+    
+    else if (pageName.equals("segnalazioniFromStudent.jsp")) {
+        menu += "<li><a href=\"" + request.getContextPath() + "/" + pageFolder
+            + "/viewRequest.jsp\">Richieste</a></li>";
+        menu +=
+            "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
+        menu +=
+                "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
+                + "/segnalazioniFromStudent.jsp\">Segnalazioni</a></li>";
+      }
+    
+    
   } else if (pageFolder.equals("_areaStudent")) { //se stiamo in una pagina dell'area studente
 	 logoRedirect = request.getContextPath()+"/_areaStudent/viewRequest.jsp";
   
