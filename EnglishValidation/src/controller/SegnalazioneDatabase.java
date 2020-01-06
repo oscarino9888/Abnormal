@@ -24,7 +24,8 @@ public class SegnalazioneDatabase {
 						 + " FROM Report "
 						 + "INNER JOIN SEND_R AS S ON Report.ID_REPORT = S.ID_REPORT "
 						 + "INNER JOIN USER AS U ON S.EMAIL = U.EMAIL "
-						 + "WHERE U.USER_TYPE = '1'"; //USER-TYPE DELLO STUDENTE DA DEFINIRE
+						 + "WHERE U.USER_TYPE = '0'"
+						 + "GROUP BY(Report.Serial)"; //USER-TYPE DELLO STUDENTE DA DEFINIRE
 				 stmt = conn.prepareStatement(sql);
 			       
 		          ResultSet r = stmt.executeQuery();
@@ -66,7 +67,7 @@ public class SegnalazioneDatabase {
 						 + " FROM Report "
 						 + "INNER JOIN SEND_R AS S ON Report.ID_REPORT = S.ID_REPORT "
 						 + "INNER JOIN USER AS U ON S.EMAIL = U.EMAIL "
-						 + "WHERE U.USER_TYPE = '2'"; //USER-TYPE DELLA SEGRETERIA DA DEFINIRE
+						 + "WHERE U.USER_TYPE = '1'"; //USER-TYPE DELLA SEGRETERIA DA DEFINIRE
 				 stmt = conn.prepareStatement(sql);
 			       
 		          ResultSet r = stmt.executeQuery();
