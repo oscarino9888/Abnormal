@@ -4,7 +4,7 @@
 	import="controller.StudentDatabase,model.Student,java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
 
 <%
-	String pageName = "BanUserJSP.jsp";
+	String pageName = "banUser.jsp";
 	String pageFolder = "_areaAdmin";
 	ArrayList<Student> student = new ArrayList<Student>();
 	StudentDatabase datb=new StudentDatabase();

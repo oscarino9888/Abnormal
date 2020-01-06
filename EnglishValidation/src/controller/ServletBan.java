@@ -105,7 +105,7 @@ public class ServletBan extends HttpServlet {
 	        	  /*     */   
 	        
 		
-	    request.getRequestDispatcher("_areaAdmin/BanUserJSP.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	    request.getRequestDispatcher("_areaAdmin/banUser.jsp").forward((ServletRequest)request, (ServletResponse)response);
 }
 	
 	
