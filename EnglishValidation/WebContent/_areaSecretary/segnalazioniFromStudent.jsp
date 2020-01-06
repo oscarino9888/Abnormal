@@ -5,7 +5,7 @@
 
 <%
 	String pageName = "segnalazioniFromStudent.jsp";
-	String pageFolder = "_areaAdmin";
+	String pageFolder = "_areaSecretary";
 	ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
 	SegnalazioneDatabase datb=new SegnalazioneDatabase();
 	segnalazioni=datb.getSegnalazioniFromStudent();
