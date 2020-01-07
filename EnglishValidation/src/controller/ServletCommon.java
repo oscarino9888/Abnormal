@@ -4,13 +4,17 @@ import interfacce.UserInterface;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.SendResult;
 
 import model.Admin;
 import model.Secretary;
@@ -72,7 +76,7 @@ public class ServletCommon extends HttpServlet {
         String password = new Utils().generatePwd(request.getParameter("password"));
         try {
           sql =
-              " SELECT  name, surname, sex, user_type FROM user "
+              " SELECT  name, surname, sex, user_type, ban FROM user "
               + "WHERE TRIM(LOWER(email)) = TRIM(?) AND TRIM(password) = TRIM(?)";
           stmt = conn.prepareStatement(sql);
           stmt.setString(1, email.toLowerCase());
@@ -88,6 +92,9 @@ public class ServletCommon extends HttpServlet {
               String surname = r.getString("surname");
               char sex = r.getString("sex").charAt(0);
               int userType = r.getInt("user_type");
+              Date ban=r.getDate("ban");
+              
+              
               
               if (userType == 0) { // Profilo Student
             	  System.out.println("Login in funzione,utente studente");
@@ -106,6 +113,10 @@ public class ServletCommon extends HttpServlet {
               }
               else {
                 throw new NumberFormatException("utente non valido");
+              }
+              
+              if(ban!=null) { //Impedisce la normale fruizione del login
+            	  redirect= request.getContextPath() + "/banned.jsp";
               }
 
               request.getSession().setAttribute("user", user);
