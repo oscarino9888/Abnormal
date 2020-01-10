@@ -1,127 +1,170 @@
 package Testing;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import javax.servlet.ServletException;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import Testing.ServletStudentTest.MockObject;
 import controller.DbConnection;
 import controller.ServletSecretary;
 
-class ServletSecretaryTest {
 
-	public class MockObject {
-		public MockObject (String idRequest, String cfu,String flag) { //funziona si può fare
-			this.idRequest = idRequest;
-			this.cfu = cfu;
-			this.flag=flag;
-			
-		}
-		
-		public void setRequest (MockHttpServletRequest request) {
-			request.addParameter("flag", flag);
-			request.addParameter("idRequest", idRequest);
-	        request.addParameter("cfu", cfu);
-	        
-		} 
-		
-		private String idRequest;
-		private String cfu;
-		private String flag;
-	}
-	
-	@Test
-	public void tc_01_1() throws Exception {
-		Connection conn = new DbConnection().getInstance().getConn();
-		 Statement stmt = conn.createStatement();
-		String query="INSERT into request (ID_REQUEST, CERTIFICATE_SERIAL, LEVEL, RELEASE_DATE, EXPIRY_DATE, YEAR, REQUESTED_CFU, SERIAL, VALIDATED_CFU, FK_USER, FK_CERTIFIER, FK_STATE)"
-		+		"VALUES ('2', 'B.6.56546', 'A1', '2017-05-25', '2018-05-25', 2018, '3', '512103579', '100', '04wmljf0wy.@studenti.unisa.it', '7', '2')";
-		stmt.executeUpdate(query);
-		 query="INSERT into attached (ID_ATTACHED, FILENAME, FK_REQUEST, FK_USER)"
-				+		"VALUES ('3', 'certificato.pdf', '2', '04wmljf0wy.@studenti.unisa.it')";
-				stmt.executeUpdate(query);
-		
-		
-        MockHttpServletRequest request = new MockHttpServletRequest();  
-        MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("2","100","1");
-        
-        x.setRequest(request); 
-        conn.commit();
-       new ServletSecretary().doPost(request, response);
-       
-       stmt = conn.createStatement();
-		query="DELETE from attached WHERE ID_ATTACHED = 3;";
-		 stmt.executeUpdate(query);
-       
-       query="DELETE from request WHERE ID_REQUEST = 2;";
-       stmt.executeUpdate(query);
-		
-		conn.commit();
-     
-	}
-
-	@Test
-	public void tc_01_2() throws Exception {
-        MockHttpServletRequest request = new MockHttpServletRequest();  
-        MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("1","12","2");
-        
-        x.setRequest(request);
-        new ServletSecretary().doPost(request, response);
-        
-        
-    
-     
-	}
-	
-	@Test
-	public void tc_01_3() throws Exception {
-        MockHttpServletRequest request = new MockHttpServletRequest();  
-        MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("8577934","123","3");
-        
-        x.setRequest(request);
-        new ServletSecretary().doPost(request, response);
-        
+public class ServletSecretaryTest {
+    private ServletSecretary servlet;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
 
     
-     
-	}
-	
-	@Test
-	public void tc_01_4() throws Exception {
-		
-	
-		
-        MockHttpServletRequest request = new MockHttpServletRequest();  
-        MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("2","100","1");
+    Connection conn = DbConnection.getInstance().getConn();
+    String sql = "";
+    PreparedStatement stmt = null;
+    
+    @Before
+    public void setUp() throws SQLException {
+        servlet = new ServletSecretary();
+        request = new MockHttpServletRequest();
+        response = new MockHttpServletResponse();
         
-        x.setRequest(request); 
-       new ServletSecretary().doPost(request, response);
-      
-       
-       
-       
-     
-	}
-	
-	@Test
-	public void tc_01_5() throws Exception {
-        MockHttpServletRequest request = new MockHttpServletRequest();  
-        MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("122","3212","2");
+        sql = "DELETE FROM attached WHERE ID_ATTACHED = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
         
-        x.setRequest(request);
-        new ServletSecretary().doPost(request, response);
-}
-}
+        sql = "DELETE FROM attached WHERE ID_ATTACHED = 2;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+        sql = "DELETE FROM request WHERE ID_REQUEST = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+    }
+    
+    @Test
+    public void coverage1() throws ServletException, IOException {
+    	request.addParameter("flag", "1");
+    	
+    	servlet.doPost(request, response);
 
+        assertEquals("json", response.getContentType());
+    }
+    
+    @Test
+    public void coverage6() throws ServletException, IOException, SQLException{
+    	request.addParameter("flag", "1");
+    	
+    	sql = "INSERT INTO request VALUES (1,'str','1','1990-09-01','1990-09-01',1990,1,1111,1,'segreteria@unisa.it',1,2);";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+    	
+        sql = "INSERT INTO attached VALUES (1,'str',1,'segreteria@unisa.it');";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+    	servlet.doPost(request, response);
+
+    	sql = "DELETE FROM attached WHERE ID_ATTACHED = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+        sql = "DELETE FROM request WHERE ID_REQUEST = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+        assertEquals("json", response.getContentType());
+    }
+    
+    @Test
+    public void coverage7() throws ServletException, IOException, SQLException{
+    	request.addParameter("flag", "1");
+    	
+    	sql = "INSERT INTO request VALUES (1,'str','1','1990-09-01','1990-09-01',1990,1,1111,1,'segreteria@unisa.it',1,2);";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+    	
+        sql = "INSERT INTO attached VALUES (1,'str',1,'segreteria@unisa.it'), (2,'str2',1,'segreteria@unisa.it');";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+    	servlet.doPost(request, response);
+
+    	sql = "DELETE FROM attached WHERE ID_ATTACHED = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+        sql = "DELETE FROM attached WHERE ID_ATTACHED = 2;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+        sql = "DELETE FROM request WHERE ID_REQUEST = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+        assertEquals("json", response.getContentType());
+    }
+    
+    
+    @Test
+    public void coverage2() throws ServletException, IOException {
+    	request.addParameter("flag", "2");
+    	request.addParameter("idRequest", "1");
+    	request.addParameter("cfu", "1");
+    	servlet.doPost(request, response);
+
+        assertEquals("json", response.getContentType());
+    }
+    
+    @Test
+    public void coverage3() throws ServletException, IOException, SQLException{
+    	request.addParameter("flag", "2");
+    	request.addParameter("idRequest", "1");
+    	request.addParameter("cfu", "1");
+    	
+    	sql = "INSERT INTO request VALUES (1,'str','1','1990-09-01','1990-09-01',1990,1,1111,1,'segreteria@unisa.it',1,1);";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+    	
+    	servlet.doPost(request, response);
+        
+        sql = "DELETE FROM request WHERE ID_REQUEST = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
+        assertEquals("json", response.getContentType());
+    }
+    
+    @Test
+    public void coverage4() throws ServletException, IOException {
+    	request.addParameter("flag", "3");
+    	request.addParameter("idRequest", "1");
+    	
+    	servlet.doPost(request, response);
+
+        assertEquals("json", response.getContentType());
+    }
+    
+    @Test
+    public void coverage5() throws ServletException, IOException, SQLException{
+    	request.addParameter("flag", "3");
+    	request.addParameter("idRequest", "1");
+    	
+    	sql = "INSERT INTO request VALUES (1,'str','1','1990-09-01','1990-09-01',1990,1,1111,1,'segreteria@unisa.it',1,1);";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+    	
+    	servlet.doPost(request, response);
+
+    	sql = "DELETE FROM request WHERE ID_REQUEST = 1;";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+
+        assertEquals("json", response.getContentType());
+    }
+}
