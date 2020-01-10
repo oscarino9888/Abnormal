@@ -12,6 +12,8 @@
 	if(!ck.isAllowed()){
 	  response.sendRedirect(request.getContextPath()+ck.getUrlRedirect());  
 	}
+	SegnalazioneDatabase datb = new SegnalazioneDatabase();
+	boolean checkSegnalazione = datb.checkSegnalazioneUser(request.getParameter("email"));
 %>
 <!DOCTYPE html>
 <html>
@@ -33,6 +35,15 @@
 
 
 		<!-- Start Body  -->
+		<% if(checkSegnalazione) { %>
+		<!-- UTENTE HA GIA' SEGNALAZIONI CARICAMENTO DELLE SEGNALAZIONI -->
+		<%} else { %>
+		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
+		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
+		<br>
+		<form name="form-invia"></form><textarea name="text" rows="10" cols="10"></textarea><br>
+		<input type="submit"> Invia </button></form>
+		<% } %>
 		
 		
 		<!--  END BODY -->
