@@ -12,8 +12,8 @@ public class SegnalazioneDatabase {
 		
 	}
 	
-	public ArrayList<Segnalazione> getSegnalazioniFromStudent(){
-		 PreparedStatement stmt = null; //statement di test
+	public ArrayList<Segnalazione> getSegnalazioniFromStudent(){ //array di segnalazioni s
+		 PreparedStatement stmt = null; //statement di tes
 		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
 		 Connection conn = new DbConnection().getInstance().getConn();
 		 String sql = "";
