@@ -95,6 +95,31 @@ public class SegnalazioneDatabase {
 		 }
 
 		 return segnalazioni;
-		
+	}
+	public boolean checkSegnalazioneUser(String email){
+		 PreparedStatement stmt = null; //statement di tes
+		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
+		 Connection conn = new DbConnection().getInstance().getConn();
+		 String sql = "";
+		 if( conn != null ) {
+			 try {
+				 sql = "SELECT R.Serial_report FROM Report as R " +
+						"INNER JOIN SEND_R AS S ON R.ID_Report = S.ID_Report" +
+						 "INNER JOIN USER AS U ON S.EMAIL = U.EMAIL" +
+						 "WHERE U.EMAIL =  ?";
+				 stmt = conn.prepareStatement(sql);
+				 stmt.setString(1, email);
+				 ResultSet r = stmt.executeQuery();
+				 if(r.wasNull()) {
+					return false;
+				 }else {
+					 return true;
+				 }
+				}catch(Exception e) {
+					System.out.println(e.getMessage());
+				}
+			 	
+		 }
+		 return false;
 	}
 }
