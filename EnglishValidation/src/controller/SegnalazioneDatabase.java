@@ -7,13 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import model.Segnalazione;;
-public class SegnalazioneDatabase {
+public class SegnalazioneDatabase { 
 	public SegnalazioneDatabase() {
 		
 	}
 	
 	public ArrayList<Segnalazione> getSegnalazioniFromStudent(){
-		 PreparedStatement stmt = null;
+		 PreparedStatement stmt = null; //statement di test
 		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
 		 Connection conn = new DbConnection().getInstance().getConn();
 		 String sql = "";
