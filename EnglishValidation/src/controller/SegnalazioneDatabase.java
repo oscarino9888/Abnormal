@@ -12,7 +12,7 @@ public class SegnalazioneDatabase {
 		
 	}
 	
-	public ArrayList<Segnalazione> getSegnalazioniFromStudent(){
+	public ArrayList<Segnalazione> getSegnalazioniFromStudent(){ //array di segnalazioni
 		 PreparedStatement stmt = null; //statement di test
 		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
 		 Connection conn = new DbConnection().getInstance().getConn();
