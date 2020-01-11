@@ -5,6 +5,7 @@ public class Segnalazione {
 	private String head; 
 	private int serial; 
 	private int idReport; 
+	private String email; //campo utilizzato per definire chi ha scritto il report in questione. 
 	
 	public Segnalazione() {
 		
@@ -39,6 +40,11 @@ public class Segnalazione {
 	public void setIdReport(int idReport) {
 		this.idReport = idReport;
 	}
-	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getEmail() {
+		return this.email;
+	}
 	
 }
