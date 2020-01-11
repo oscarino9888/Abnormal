@@ -39,20 +39,20 @@ public class ServletSegnalazione extends HttpServlet {
 		    String sql = "";
 		    
 		    if (conn != null) {
-		    	if (flag == 1) { //CREAZIONE PRIMA SEGNALAZIONE UTENTE
+		    	if (flag == 1) { //CREAZIONE PIMA SEGNALAZIONE DA PARTE DELLO STUDENTE
 		    		String testo = request.getParameter("testo");
 		    		String email = request.getParameter("email");
 		    		try {
 		    			//INSERISCO LA PRIMA SEGNALAZIONE NELLA TAB REPORT DEL DB
 		    			sql = "INSERT INTO REPORT VALUES (?,?,?)";
 		    			stmt = conn.prepareStatement(sql);
-		    			stmt.setString(1, "key" + email);
+		    			stmt.setString(1, "key:" + email);
 		    			stmt.setString(2, "");
 		    			stmt.setString(3, testo);
 		    			 stmt.executeUpdate();
 		    			//PRENDO L'ID AUTO_INCREMENT DEL REPORT APPEAN CREATO 
 		    			 sql = "SELECT ID_REPORT FROM REPORT WHERE SERIAL = ?";
-		    			 String var = "key" + email;
+		    			 String var = "key:" + email;
 		    			 stmt = conn.prepareStatement(sql);
 		    			 stmt.setString(1, var);
 		    			 ResultSet r = stmt.executeQuery();
@@ -68,7 +68,7 @@ public class ServletSegnalazione extends HttpServlet {
 		    		}catch(Exception e) {
 		    			System.out.println(e.getMessage());
 		    		}
-		    	} //FINE FLAG 1
+		    	} 
 		    }
 
 	 }
