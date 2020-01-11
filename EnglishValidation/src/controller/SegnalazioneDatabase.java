@@ -122,4 +122,30 @@ public class SegnalazioneDatabase {
 		 }
 		 return false;
 	}
+	public ArrayList<Segnalazione> getSegnalazioneListFromSerial(String serial){
+		PreparedStatement stmt = null; //statement di tes
+		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
+		 Connection conn = new DbConnection().getInstance().getConn();
+		 String sql = "";
+		 try {
+			 sql = "SELECT BODY, EMAIL FROM REPORT AS R"+ 
+					 "INNER JOIN SEND_R AS S ON R.ID_REPORT = S.ID_REPORT" +
+					 "WHERE SERIAL = ?";
+			 stmt = conn.prepareStatement(sql);
+			 stmt.setString(1, serial); //IL SERIAL E' UNIVICO PER OGNI REPORT DI UNA COVERSAZIONE STUDENTE-SEGRETERIA
+			 ResultSet r = stmt.executeQuery();
+			 while(r.next()) {
+				Segnalazione s = new Segnalazione ();
+				s.setBody(r.getString(1));
+				s.setEmail(r.getString(2));
+				segnalazioni.add(s);
+			 }
+			 conn.commit();
+			 
+		
+		 }catch (Exception e) {
+			System.out.println(e.getMessage());
+		 }
+		return segnalazioni;
+	}
 }
