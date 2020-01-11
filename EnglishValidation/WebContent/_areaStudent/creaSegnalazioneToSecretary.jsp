@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1" import="controller.CheckSession"%>
 <%@ page
-	import="controller.SegnalazioneDatabase,model.Segnalazione,java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
+	import="model.Student,controller.SegnalazioneDatabase,model.Segnalazione,java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
 
 <%
 	String pageName = "creaSegnalazioneToSecretary.jsp";
@@ -12,11 +12,64 @@
 	if(!ck.isAllowed()){
 	  response.sendRedirect(request.getContextPath()+ck.getUrlRedirect());  
 	}
+	SegnalazioneDatabase datb = new SegnalazioneDatabase();
+	Student stud = (Student) request.getSession().getAttribute("user");
+	boolean checkSegnalazione = datb.checkSegnalazioneUser(stud.getEmail());
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/partials/head.jsp" />
+<style>
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
 </head>
 
 <body>
@@ -33,6 +86,39 @@
 
 
 		<!-- Start Body  -->
+		<% if(checkSegnalazione) { 
+			ArrayList<Segnalazione> segnalazioni = datb.getSegnalazioneListFromSerial("key:"+request.getParameter("email"));
+			for(int i = 0; i < segnalazioni.size(); i++){
+				if(segnalazioni.get(i).getEmail() == "segreteria@unisa.it"){
+					%>
+					<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLA SEGRETERIA. CARICO IL LAYOUT PER LA SEGRETERIA -->
+						<div class="container darker">
+			  				<img src="" alt="Avatar" class="right">
+			  				<p><%=segnalazioni.get(i).getEmail()%></p>
+						</div>
+				<%} else { %>
+				<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLO STUDENTE. CARICO IL LAYOUT DELLO STUDENTE -->
+					<div class="container">
+			  			<img src="" alt="Avatar">
+			  		<p><%=segnalazioni.get(i).getEmail()%></p>
+						</div>
+				<% } 
+				}  %>
+		<!--  FINE CARICAMENTO SEGNALAZIONI TRA STUDENTE E SEGRETERIA 
+			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
+		<br><form id="form-risposta"><textarea id="testo-risposta" rows="5" cols="5"></textarea>
+	   <input type="hide" id="email-risposta" value= <%=stud.getEmail()%>> 
+		
+		<br> <input type="submit"> Invia </input></form>
+			
+		<%  } else { %>
+		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
+		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
+		<br>
+		<form id="form-invia"></form><textarea id="testo" rows="10" cols="10"></textarea><br>
+		<input type="hide" id="email" value= <%=stud.getEmail()%>> 
+		<input type="submit"> Invia </button></form>
+		<% } %>
 		
 		
 		<!--  END BODY -->

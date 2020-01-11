@@ -95,6 +95,57 @@ public class SegnalazioneDatabase {
 		 }
 
 		 return segnalazioni;
+	}
+	public boolean checkSegnalazioneUser(String email){
+		 PreparedStatement stmt = null; //statement di tes
+		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
+		 Connection conn = new DbConnection().getInstance().getConn();
+		 String sql = "";
+		 if( conn != null ) {
+			 try {
+				 sql = "SELECT R.Serial_report FROM Report as R " +
+						"INNER JOIN SEND_R AS S ON R.ID_Report = S.ID_Report" +
+						 "INNER JOIN USER AS U ON S.EMAIL = U.EMAIL" +
+						 "WHERE U.EMAIL =  ?";
+				 stmt = conn.prepareStatement(sql);
+				 stmt.setString(1, email);
+				 ResultSet r = stmt.executeQuery();
+				 if(r.wasNull()) {
+					return false;
+				 }else {
+					 return true;
+				 }
+				}catch(Exception e) {
+					System.out.println(e.getMessage());
+				}
+			 	
+		 }
+		 return false;
+	}
+	public ArrayList<Segnalazione> getSegnalazioneListFromSerial(String serial){
+		PreparedStatement stmt = null; //statement di tes
+		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
+		 Connection conn = new DbConnection().getInstance().getConn();
+		 String sql = "";
+		 try {
+			 sql = "SELECT BODY, EMAIL FROM REPORT AS R"+ 
+					 "INNER JOIN SEND_R AS S ON R.ID_REPORT = S.ID_REPORT" +
+					 "WHERE SERIAL = ?";
+			 stmt = conn.prepareStatement(sql);
+			 stmt.setString(1, serial); //IL SERIAL E' UNIVICO PER OGNI REPORT DI UNA COVERSAZIONE STUDENTE-SEGRETERIA
+			 ResultSet r = stmt.executeQuery();
+			 while(r.next()) {
+				Segnalazione s = new Segnalazione ();
+				s.setBody(r.getString(1));
+				s.setEmail(r.getString(2));
+				segnalazioni.add(s);
+			 }
+			 conn.commit();
+			 
 		
+		 }catch (Exception e) {
+			System.out.println(e.getMessage());
+		 }
+		return segnalazioni;
 	}
 }
