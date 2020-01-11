@@ -87,7 +87,7 @@ body {
 
 		<!-- Start Body  -->
 		<% if(checkSegnalazione) { 
-			ArrayList<Segnalazione> segnalazioni = datb.getSegnalazioneListFromSerial("key:"+request.getParameter("email"));
+			ArrayList<Segnalazione> segnalazioni = datb.getSegnalazioneListFromSerial("key:"+stud.getEmail());
 			for(int i = 0; i < segnalazioni.size(); i++){
 				if(segnalazioni.get(i).getEmail() == "segreteria@unisa.it"){
 					%>
