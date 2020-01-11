@@ -219,21 +219,21 @@ public class ServletStudent extends HttpServlet {
             int count = r.last() ? r.getRow() : 0;
             if (count == 0) {
               sql = " INSERT INTO request "
-                  + " (level, release_date, expiry_date, year, requested_cfu,"
-                  + " serial, validated_cfu, fk_user, fk_certifier, fk_state, certificate_serial) "
+                  + " (certificate_serial, level, release_date, expiry_date, year, requested_cfu,"
+                  + " serial, validated_cfu, fk_user, fk_certifier, fk_state) "
                   + " VALUES " + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
               stmt = conn.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
-              stmt.setString(1, level);
-              stmt.setString(2, releaseDate);
-              stmt.setString(3, expiryDate);
-              stmt.setString(4, year);
-              stmt.setInt(5, requestedCfu);
-              stmt.setInt(6, serial);
-              stmt.setInt(7, validatedCfu);
-              stmt.setString(8, idUser);
-              stmt.setInt(9, idEnte);
-              stmt.setInt(10, idState);
-              stmt.setString(11, certificateSerial);
+              stmt.setString(1, certificateSerial);
+              stmt.setString(2, level);
+              stmt.setString(3, releaseDate);
+              stmt.setString(4, expiryDate);
+              stmt.setString(5, year);
+              stmt.setInt(6, requestedCfu);
+              stmt.setInt(7, serial);
+              stmt.setInt(8, validatedCfu);
+              stmt.setString(9, idUser);
+              stmt.setInt(10, idEnte);
+              stmt.setInt(11, idState);
               if (stmt.executeUpdate() > 0) {
                 content = "Richiesta parziale presentata con successo.";
                 redirect = request.getContextPath() + "/_areaStudent/uploadAttached.jsp";
@@ -315,6 +315,7 @@ public class ServletStudent extends HttpServlet {
           }
         } catch (Exception e) {
           error += e.getMessage();
+          System.out.println(error += e.getMessage());
           result *= 0;
         }
 
