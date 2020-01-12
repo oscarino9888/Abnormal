@@ -106,8 +106,9 @@ body {
 				}  %>
 		<!--  FINE CARICAMENTO SEGNALAZIONI TRA STUDENTE E SEGRETERIA 
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
-		<br><form id="form-risposta"><textarea id="testo-risposta" rows="5" cols="5"></textarea>
-	   <input type="hide" id="email-risposta" value= <%=stud.getEmail()%>> 
+		<br><form id="form-risposta">
+		<textarea id="testo-risposta" rows="5" cols="5"></textarea>
+	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
 		
 		<br> <input type="submit"> Invia </input></form>
 			
@@ -115,9 +116,10 @@ body {
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
 		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
 		<br>
-		<form id="form-invia"><textarea id="testo" rows="10" cols="10"></textarea><br>
-		<input type="hide" id="email" value= <%=stud.getEmail()%>> 
-		<input type="submit"> Invia </button></form>
+		<form id="form-invia">
+		<textarea id="testo" rows="10" cols="10"></textarea><br>
+		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
+		<input type="submit"> Invia</form>
 		<% } %>
 		
 		
@@ -128,7 +130,8 @@ body {
 	<!--End pagewrapper-->
 
 	<jsp:include page="/partials/includes.jsp" />
-	
+	<script
+		src="<%= request.getContextPath() %>/js/pages/scripts_creaSegnalazione.js"></script>
 
 </body>
 </html>
