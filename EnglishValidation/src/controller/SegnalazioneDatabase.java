@@ -103,7 +103,7 @@ public class SegnalazioneDatabase {
 		 String sql = "";
 		 if( conn != null ) {
 			 try {
-				 sql = "SELECT R.Serial_report FROM Report as R " +
+				 sql = "SELECT R.Serial FROM Report as R " +
 						"INNER JOIN SEND_R AS S ON R.ID_Report = S.ID_Report" +
 						 "INNER JOIN USER AS U ON S.EMAIL = U.EMAIL" +
 						 "WHERE U.EMAIL =  ?";
