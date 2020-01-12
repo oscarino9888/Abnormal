@@ -68,7 +68,6 @@ public class ServletBan extends HttpServlet {
 	     
 	       
 	        try {
-	        	System.out.println("fase update");
 	          sql ="update user set ban=? where EMAIL = ? ";
 	           stmt = conn.prepareStatement(sql);
 	          stmt.setDate(1,dataSql);
