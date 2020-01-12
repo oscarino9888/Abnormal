@@ -115,7 +115,7 @@ body {
 		<%  } else { %>
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
 		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
-		<br>
+	
 		<form id="form-invia">
 		<textarea id="testo" rows="10" cols="10"></textarea><br>
 		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
