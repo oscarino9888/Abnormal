@@ -15,6 +15,7 @@
 	SegnalazioneDatabase datb = new SegnalazioneDatabase();
 	Student stud = (Student) request.getSession().getAttribute("user");
 	boolean checkSegnalazione = datb.checkSegnalazioneUser(stud.getEmail());
+    System.out.println(checkSegnalazione);
 %>
 <!DOCTYPE html>
 <html>
@@ -110,7 +111,7 @@ body {
 		<textarea id="testo-risposta" rows="5" cols="5"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
 		
-		<br> <input type="submit"> Invia </input></form>
+		<br> <input type="submit">  </input></form>
 			
 		<%  } else { %>
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
