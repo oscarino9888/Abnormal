@@ -52,8 +52,8 @@ public class ServletBan extends HttpServlet {
 		try {
 			parser = format.parse(date);
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			throw new IllegalArgumentException("Formato non corretto");
 		}
 		@SuppressWarnings("deprecation")
 		java.sql.Date dataSql = new java.sql.Date(parser.getTime());
@@ -74,16 +74,14 @@ public class ServletBan extends HttpServlet {
 	          stmt.setDate(1,dataSql);
 	          stmt.setString(2, email);
 	       
-	          stmt.executeUpdate();
-	         
-	
-	          
+	          if(stmt.executeUpdate() != 1)
+	        	  throw new IllegalArgumentException("Utente non registrato");
+	                   
 	         
 	              conn.commit();
 	            
 	             
 	          } catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}  finally {
 	        	  /*     */ 
@@ -91,9 +89,9 @@ public class ServletBan extends HttpServlet {
 	        	  /*     */       try {
 	        	  /*     */ 
 	        	  /*     */ 
-	        	  /*     */         
-	        	  /* 818 */         if (stmt != null)
-	        	  /* 819 */           stmt.close(); 
+	        	  /*     */         //roba inutile?
+	        	  /* 818 */         /*if (stmt != null) */
+	        	  /* 819 */          /*stmt.close(); */
 	        	  /* 820 */         if (stmt != null)
 	        	  /* 821 */           stmt.close(); 
 	        	  /* 822 */       } catch (SQLException e) {
@@ -104,7 +102,6 @@ public class ServletBan extends HttpServlet {
 	        	  /*     */     } 
 	        	  /*     */   
 	        
-		
 	    request.getRequestDispatcher("_areaAdmin/banUser.jsp").forward((ServletRequest)request, (ServletResponse)response);
 }
 	
@@ -113,7 +110,7 @@ public class ServletBan extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
