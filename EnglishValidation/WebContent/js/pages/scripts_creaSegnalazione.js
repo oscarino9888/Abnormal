@@ -1,10 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function(){
+	alert("Funziona");
+	
+});
 
-					$(document).on('submit','#form-invia',function(e) {
+$(document).ready(function() {
+					$(document).on('submit','#form-invia',function() {
 										var testo_msg = $('#testo').val();
 										var email = $('#email').val();
-											$
-													.ajax({
+											$.ajax({
 														url : absolutePath + "/ServletSegnalazione",
 														type : "POST",
 														dataType : 'JSON',

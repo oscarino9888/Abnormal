@@ -117,7 +117,7 @@ body {
 			
 		<%  } if(!checkSegnalazione) { %>
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
-		 <div class="panel">Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
+		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
 	     
 		<form id="form-invia">
 		<textarea id="testo" rows="10" cols="10"></textarea><br>
@@ -125,18 +125,18 @@ body {
 		<input type="submit"></form>
 			
 		<% } %>
-		</div>
+		
 	
-			
+					<jsp:include page="/partials/footer.jsp" />
 		<!--  END BODY -->
+<jsp:include page="/partials/includes.jsp" />
+	<script src="<%= request.getContextPath() %>/js/pages/scripts_creaSegnalazione.js"></script>
 
-		<jsp:include page="/partials/footer.jsp" />
 
-</div>
+
 	<!--End pagewrapper-->
 
-	<jsp:include page="/partials/includes.jsp" />
-	<script src="<%= request.getContextPath() %>/js/pages/scripts_creaSegnalazione.js"></script>
+	
 	
 
 </body>
