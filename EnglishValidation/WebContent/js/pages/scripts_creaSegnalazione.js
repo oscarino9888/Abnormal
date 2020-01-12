@@ -1,37 +1,24 @@
-$(document)
-		.ready(
-				function() {
+$(document).ready(function() {
 
-					$(document)
-							.on(
-									'submit',
-									'#form-invia',
-									function(e) {
+					$(document).on('submit','#form-invia',function(e) {
 										var testo_msg = $('#testo').val();
 										var email = $('#email').val();
 											$
 													.ajax({
-														url : absolutePath
-																+ "/ServletSegnalazione",
+														url : absolutePath + "/ServletSegnalazione",
 														type : "POST",
 														dataType : 'JSON',
 														async : false,
 														data : {
 															"testo" : testo,
 															"email" : email,
-															"flag" : 1
-															
+															"flag" : 1						
 														},
 														success : function(msg) {
 															if (!msg.result) {
-																showAlert(
-																		1,
-																		msg.error);
+																showAlert(	1,msg.error);
 															} else {
-																showAlert(
-																		0,
-																		msg.content);
-
+																showAlert(0,msg.content);
 																setTimeout(
 																		function() {
 																			window.location.href = msg.redirect;
@@ -46,15 +33,10 @@ $(document)
 									});
 
 				});
-$(document)
-.ready(
+$(document).ready(
 		function() {
 
-			$(document)
-					.on(
-							'submit',
-							'#form-risposta',
-							function(e) {
+			$(document).on('submit','#form-risposta',function(e) {
 								var testo_msg = $('#testo-risposta').val();
 								var email = $('#email-risposta').val();
 									$

@@ -5,7 +5,7 @@
 	<span class="icon fa fa-angle-double-up"></span>
 </div>
 
-<!-- <script src="<%= request.getContextPath() %>/js/jquery.js"></script> -->
+<script src="<%= request.getContextPath() %>/js/jquery.js"></script> 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script>

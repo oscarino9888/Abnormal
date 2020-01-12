@@ -74,7 +74,8 @@ body {
 </head>
 
 <body>
-	<div class="page-wrapper">
+
+	
 
 		<!-- Preloader -->
 		<!--  <div class="preloader"></div> -->
@@ -107,32 +108,36 @@ body {
 				}  %>
 		<!--  FINE CARICAMENTO SEGNALAZIONI TRA STUDENTE E SEGRETERIA 
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
+			  
 		<br><form id="form-risposta">
 		<textarea id="testo-risposta" rows="5" cols="5"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
 		
-		<br> <input type="submit">  </input></form>
+		<br> <input type="submit">  </form>
 			
-		<%  } else { %>
+		<%  } if(!checkSegnalazione) { %>
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
-		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
-	
+		 <div class="panel">Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
+	     
 		<form id="form-invia">
 		<textarea id="testo" rows="10" cols="10"></textarea><br>
 		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
-		<input type="submit"> Invia</form>
+		<input type="submit"></form>
+			
 		<% } %>
-		
-		
+		</div>
+	
+			
 		<!--  END BODY -->
 
 		<jsp:include page="/partials/footer.jsp" />
-	</div>
+
+</div>
 	<!--End pagewrapper-->
 
 	<jsp:include page="/partials/includes.jsp" />
-	<script
-		src="<%= request.getContextPath() %>/js/pages/scripts_creaSegnalazione.js"></script>
+	<script src="<%= request.getContextPath() %>/js/pages/scripts_creaSegnalazione.js"></script>
+	
 
 </body>
 </html>
