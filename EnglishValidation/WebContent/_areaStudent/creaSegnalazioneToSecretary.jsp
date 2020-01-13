@@ -105,16 +105,15 @@ body {
 			  		<p><%=segnalazioni.get(i).getEmail()%></p>
 						</div>
 				<% } 
-				} }  %>
+				}   %>
 		<!--  FINE CARICAMENTO SEGNALAZIONI TRA STUDENTE E SEGRETERIA 
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
 			  
 		<br><form id="form-risposta">
 		<textarea id="testo-risposta" rows="5" cols="5"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
-		
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
-			
+			<% } %>
 		<%  if (!checkSegnalazione){ %>
 
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
