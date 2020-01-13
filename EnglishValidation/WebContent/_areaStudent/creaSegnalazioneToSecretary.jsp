@@ -15,6 +15,7 @@
 	SegnalazioneDatabase datb = new SegnalazioneDatabase();
 	Student stud = (Student) request.getSession().getAttribute("user");
 	boolean checkSegnalazione = datb.checkSegnalazioneUser(stud.getEmail());
+    System.out.println(checkSegnalazione);
 %>
 <!DOCTYPE html>
 <html>
@@ -73,7 +74,8 @@ body {
 </head>
 
 <body>
-	<div class="page-wrapper">
+
+	
 
 		<!-- Preloader -->
 		<!--  <div class="preloader"></div> -->
@@ -106,6 +108,7 @@ body {
 				} }  %>
 		<!--  FINE CARICAMENTO SEGNALAZIONI TRA STUDENTE E SEGRETERIA 
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
+			  
 		<br><form id="form-risposta">
 		<textarea id="testo-risposta" rows="5" cols="5"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
@@ -113,25 +116,29 @@ body {
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
 			
 		<%  if (!checkSegnalazione){ %>
+
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
 		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
-	
+	     
 		<form id="form-invia">
 		<textarea id="testo" rows="10" cols="10"></textarea><br>
 		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
 		<input type="button" id="bottone-invia" value="Invia"></form>
+
 		<% } %>
 		
-		
+	
+					<jsp:include page="/partials/footer.jsp" />
 		<!--  END BODY -->
+<jsp:include page="/partials/includes.jsp" />
+	<script src="<%= request.getContextPath() %>/js/pages/scripts_creaSegnalazione.js"></script>
 
-		<jsp:include page="/partials/footer.jsp" />
-	</div>
+
+
 	<!--End pagewrapper-->
 
-	<jsp:include page="/partials/includes.jsp" />
-	<script
-		src="<%= request.getContextPath() %>/js/pages/scripts_creaSegnalazione.js"></script>
+	
+	
 
 </body>
 </html>

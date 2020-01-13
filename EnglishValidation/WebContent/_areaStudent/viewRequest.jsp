@@ -92,8 +92,7 @@
 			    } );
 			});
 		</script>
-	<script
-		src="<%= request.getContextPath() %>/js/pages/scripts_viewRequestStudent.js"></script>
+	<script	src="<%= request.getContextPath() %>/js/pages/scripts_viewRequestStudent.js"></script>
 		
 </body>
 </html>

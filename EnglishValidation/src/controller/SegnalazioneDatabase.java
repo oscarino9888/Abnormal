@@ -107,10 +107,10 @@ public class SegnalazioneDatabase {
 				 stmt = conn.prepareStatement(sql);
 				 stmt.setString(1,email);
 				 ResultSet r = stmt.executeQuery();
-				 if(r.wasNull()) {
-					return false;
+				 if(r.next()) {
+					return true;
 				 }else {
-					 return true;
+					 return false;
 				 }
 				}catch(Exception e) {
 					System.out.println(e.getMessage());
