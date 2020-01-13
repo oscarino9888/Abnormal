@@ -96,30 +96,30 @@ body {
 			  				<img src="" alt="Avatar" class="right">
 			  				<p><%=segnalazioni.get(i).getEmail()%></p>
 						</div>
-				<%} else { %>
+				<% } else { %>
 				<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLO STUDENTE. CARICO IL LAYOUT DELLO STUDENTE -->
 					<div class="container">
 			  			<img src="" alt="Avatar">
 			  		<p><%=segnalazioni.get(i).getEmail()%></p>
 						</div>
 				<% } 
-				}  %>
+				} }  %>
 		<!--  FINE CARICAMENTO SEGNALAZIONI TRA STUDENTE E SEGRETERIA 
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
 		<br><form id="form-risposta">
 		<textarea id="testo-risposta" rows="5" cols="5"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
 		
-		<br> <input type="submit"> Invia </input></form>
+		<br> <input type="button" id="bottone-risposta" value="invia"></form>
 			
-		<%  } else { %>
+		<%  if (!checkSegnalazione){ %>
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
 		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
 	
 		<form id="form-invia">
 		<textarea id="testo" rows="10" cols="10"></textarea><br>
 		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
-		<input type="submit"> Invia</form>
+		<input type="button" id="bottone-invia" value="Invia"></form>
 		<% } %>
 		
 		
