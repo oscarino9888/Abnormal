@@ -87,24 +87,8 @@ public class ServletBan extends HttpServlet {
 	          } catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}  finally {
-	        	  /*     */ 
-	        	  /*     */       
-	        	  /*     */       try {
-	        	  /*     */ 
-	        	  /*     */ 
-	        	  /*     */         
-	        	  /* 818 */         if (stmt != null)
-	        	  /* 819 */           stmt.close(); 
-	        	  /* 820 */         if (stmt != null)
-	        	  /* 821 */           stmt.close(); 
-	        	  /* 822 */       } catch (SQLException e) {
-	        	  /* 823 */         e.printStackTrace();
-	        	  /*     */       } 
-	        	  /* 827 */         
-	        	  /*     */       } 
-	        	  /*     */     } 
-	        	  /*     */   
+	          }
+	        }
 	        
 		
 	    request.getRequestDispatcher("_areaAdmin/banUser.jsp").forward((ServletRequest)request, (ServletResponse)response);
