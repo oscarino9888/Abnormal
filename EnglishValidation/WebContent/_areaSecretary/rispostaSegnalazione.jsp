@@ -16,7 +16,7 @@
 <style>
 body {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 300px;
   padding: 0 20px;
 }
 
@@ -45,7 +45,7 @@ body {
 .container img {
   float: left;
   max-width: 40px;
-  width: 100%;
+  width: 50%;
   margin-right: 20px;
   border-radius: 50%;
 }
@@ -54,16 +54,6 @@ body {
   float: right;
   margin-left: 20px;
   margin-right:0;
-}
-
-.time-right {
-  float: right;
-  color: #aaa;
-}
-
-.time-left {
-  float: left;
-  color: #999;
 }
 </style>
 </head>
