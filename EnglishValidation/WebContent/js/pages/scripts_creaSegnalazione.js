@@ -32,6 +32,7 @@ $(document).ready(function() {
 	  $("#bottone-risposta").click(function(){
 	    var testo_msg = $("#testo").val();
 	    var email = $("#email").val();
+	    var head = $("#headresponse").val();
 	    $.ajax({
 	      type: "POST",
 		  dataType: 'JSON',
@@ -40,8 +41,8 @@ $(document).ready(function() {
 	      data : {
 					"testo" : testo_msg,
 					"email" : email,
-					"flag" : 2
-																
+					"flag" : 2,
+					"head" : head,											
 				},
 	      success: function(msg)
 	      {
