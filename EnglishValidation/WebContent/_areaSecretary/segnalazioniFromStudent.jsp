@@ -45,7 +45,7 @@
 								<table id="adminTable" class="display data-results table table-striped table-hover table-bordered">
 									<thead>
 										<tr>
-											<th class="text-center">ID_REPORT</th>
+											<th class="text-center">EMAIL</th>
 											<th class="text-center">HEADER</th>
 											<th class="text-center">VISUALIZZA</th>
 										
@@ -61,9 +61,9 @@
 									
 						%>
 						<tr>
-							<td><%= segnalazioni.get(i).getIdReport() %></td>
+							<td><%= segnalazioni.get(i).getEmail() %></td>
 							<td><%= segnalazioni.get(i).getHead() %></td>
-							<td><button onClick="" > Visualizza</button></td>
+							<td><button onClick="open('<%=segnalazioni.get(i).getEmail()%>')" > Visualizza</button></td>
 						</tr>
 						
 						<%
@@ -83,7 +83,12 @@
 		<jsp:include page="/partials/footer.jsp" />
 	</div>
 	<!--End pagewrapper-->
-
+	<script>
+	function open(email){
+		alert("yes click: key:" + email);
+		//window.open("rispostaSegnalazione.jsp","Finestra di diaologo");
+	}
+	</script>
 	<jsp:include page="/partials/includes.jsp" />
 	
 
