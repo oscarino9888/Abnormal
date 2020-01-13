@@ -25,13 +25,10 @@ $(document).ready(function() {
       }
     });
   });
-});
-
-
-$(document).ready(function() {
-	  $("#bottone-risposta").click(function(){
-	    var testo_msg = $("#testo").val();
-	    var email = $("#email").val();
+  $("#bottone-risposta").click(function(){
+	    var testo_msg = $("#testo-risposta").val();
+	    var email = $("#email-risposta").val();
+	    var keySerial = $("#keyserial").val();
 	    $.ajax({
 	      type: "POST",
 		  dataType: 'JSON',
@@ -40,12 +37,13 @@ $(document).ready(function() {
 	      data : {
 					"testo" : testo_msg,
 					"email" : email,
+					"keyserial": keySerial,
 					"flag" : 2
 																
 				},
 	      success: function(msg)
 	      {
-	        $("#risultato").html(msg);
+	        location.reload(true);
 	      },
 	      error: function()
 	      {
@@ -53,4 +51,6 @@ $(document).ready(function() {
 	      }
 	    });
 	  });
-	});
+});
+
+
