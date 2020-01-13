@@ -18,7 +18,7 @@ import controller.DbConnection;
 import controller.ServletSecretary;
 
 
-public class ServletSecretaryTest {
+public class ServletSecretaryCoverage {
     private ServletSecretary servlet;
     private MockHttpServletRequest request;
     private MockHttpServletResponse response;
