@@ -15,7 +15,6 @@
 	SegnalazioneDatabase datb = new SegnalazioneDatabase();
 	Student stud = (Student) request.getSession().getAttribute("user");
 	boolean checkSegnalazione = datb.checkSegnalazioneUser(stud.getEmail());
-    System.out.println(checkSegnalazione);
 %>
 <!DOCTYPE html>
 <html>
@@ -28,6 +27,13 @@ body {
   padding: 0 20px;
 }
 
+.heads{
+padding-bottom: 40px;
+}
+
+.messages{
+
+}
 
 
 
@@ -120,23 +126,28 @@ body {
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
 			  
 		<br><form id="form-risposta">
+		<fieldset class="heads"><legend>Head</legend>
+		<input type="text" id="headresponse"class="text-center" placeholder="Header del messaggio"><br>
+		</fieldset>
+		<fieldset class="messages"><legend>Messaggio</legend>
 		<textarea id="testo-risposta" rows="20" cols="20"></textarea>
+		</fieldset>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
 			<% } %>
 		<%  if (!checkSegnalazione){ %>
 
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
-		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
+		<b>Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.</b>
 	     
 	     <div
 									class="col-lg-6 col-md-6 col-sm-12 col-xs-12 login-container">
 									<div class="panel">
 		<form id="form-invia">
-		<fieldset><legend>Head</legend>
-		<input type="text" id="headsend"class="text-center"><br>
+		<fieldset class="heads"><legend>Head</legend>
+		<input type="text" id="headsend"class="text-center" placeholder="Header del messaggio"><br>
 		</fieldset>
-		<fieldset><legend>Messaggio</legend>
+		<fieldset class="messages"><legend>Messaggio</legend>
 		<textarea rows="3" cols="10" id="testo" class="text-center" > </textarea>
 		</fieldset>
 		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
@@ -152,6 +163,8 @@ body {
 			</div>
 			</div>
 			</div>
+				</div>
+				
 					<jsp:include page="/partials/footer.jsp" />
 		<!--  END BODY -->
 <jsp:include page="/partials/includes.jsp" />
