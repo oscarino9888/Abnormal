@@ -63,7 +63,7 @@
 						<tr>
 							<td><%= segnalazioni.get(i).getEmail() %></td>
 							<td><%= segnalazioni.get(i).getHead() %></td>
-							<td><button onClick="open('<%=segnalazioni.get(i).getEmail()%>')" > Visualizza</button></td>
+							<td><button onClick="openVisualizza('<%=segnalazioni.get(i).getEmail()%>')" > Visualizza </button></td>
 						</tr>
 						
 						<%
@@ -84,9 +84,8 @@
 	</div>
 	<!--End pagewrapper-->
 	<script>
-	function open(email){
-		alert("yes click: key:" + email);
-		//window.open("rispostaSegnalazione.jsp","Finestra di diaologo");
+	function openVisualizza(email){
+		window.open("rispostaSegnalazione.jsp?keyserial="+email,"Finestra di diaologo",'width=500,height=600');
 	}
 	</script>
 	<jsp:include page="/partials/includes.jsp" />
