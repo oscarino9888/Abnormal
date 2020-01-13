@@ -14,6 +14,7 @@
 	}
 	SegnalazioneDatabase datb = new SegnalazioneDatabase();
 	Student stud = (Student) request.getSession().getAttribute("user");
+	String keySerial = "key:" + stud.getEmail();
 	boolean checkSegnalazione = datb.checkSegnalazioneUser(stud.getEmail());
     System.out.println(checkSegnalazione);
 %>
@@ -101,7 +102,7 @@ body {
 		<% if(checkSegnalazione) { 
 			ArrayList<Segnalazione> segnalazioni = datb.getSegnalazioneListFromSerial("key:"+stud.getEmail());
 			for(int i = 0; i < segnalazioni.size(); i++){
-				if(segnalazioni.get(i).getEmail() == "segreteria@unisa.it"){
+				if(segnalazioni.get(i).getEmail().equals("segreteria@unisa.it")){
 					%>
 					<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLA SEGRETERIA. CARICO IL LAYOUT PER LA SEGRETERIA -->
 						<div class="container darker">
@@ -121,7 +122,8 @@ body {
 			  
 		<br><form id="form-risposta">
 		<textarea id="testo-risposta" rows="20" cols="20"></textarea>
-	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
+	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>>
+	   <input type="hidden" id="keyserial" value="<%=keySerial %>"> 
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
 			<% } %>
 		<%  if (!checkSegnalazione){ %>
