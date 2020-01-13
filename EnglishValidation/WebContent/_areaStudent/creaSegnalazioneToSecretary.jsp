@@ -112,13 +112,13 @@ padding-bottom: 40px;
 					<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLA SEGRETERIA. CARICO IL LAYOUT PER LA SEGRETERIA -->
 						<div class="container darker">
 			  				<img src="" alt="Avatar" class="right">
-			  				<p><%=segnalazioni.get(i).getEmail()%></p>
+			  				<p><%=segnalazioni.get(i).getBody()%></p>
 						</div>
 				<% } else { %>
 				<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLO STUDENTE. CARICO IL LAYOUT DELLO STUDENTE -->
 					<div class="container">
 			  			<img src="" alt="Avatar">
-			  		<p><%=segnalazioni.get(i).getEmail()%></p>
+			  		<p><%=segnalazioni.get(i).getBody()%></p>
 						</div>
 				<% } 
 				}   %>

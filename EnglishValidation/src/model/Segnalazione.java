@@ -3,14 +3,14 @@ package model;
 public class Segnalazione {
 	private String body; 
 	private String head; 
-	private int serial; 
+	private String serial; 
 	private int idReport; 
 	private String email; //campo utilizzato per definire chi ha scritto il report in questione. 
 	
 	public Segnalazione() {
 		
 	}
-	public Segnalazione(String body, String head, int serial, int idReport) {
+	public Segnalazione(String body, String head, String serial, int idReport) {
 		this.body = body; 
 		this.head = head; 
 		this.serial = serial; 
@@ -28,10 +28,10 @@ public class Segnalazione {
 	public void setHead(String head) {
 		this.head = head;
 	}
-	public int getSerial() {
+	public String getSerial() {
 		return serial;
 	}
-	public void setSerial(int serial) {
+	public void setSerial(String serial) {
 		this.serial = serial;
 	}
 	public int getIdReport() {
