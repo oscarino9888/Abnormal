@@ -21,7 +21,7 @@ public class SegnalazioneDatabase {
 		 if( conn != null ) {
 			 try {
 				 sql = 
-						 "SELECT Report.ID_REPORT, Report.Serial, Report.Body, Report.Head"
+						 "SELECT Report.ID_REPORT, Report.Serial, Report.Body, Report.Head, U.EMAIL"
 						 + " FROM Report "
 						 + "INNER JOIN SEND_R AS S ON Report.ID_REPORT = S.ID_REPORT "
 						 + "INNER JOIN USER AS U ON S.EMAIL = U.EMAIL "
@@ -35,14 +35,16 @@ public class SegnalazioneDatabase {
 		          } else {
 		        	  while(r.next()) {
 		        		  int id_report = r.getInt("ID_REPORT");
-		        		  int serial = r.getInt("SERIAL");
+		        		  String serial = r.getString("SERIAL");
 		        		  String body = r.getString("BODY");
 		        		  String head = r.getString("HEAD");
+		        		  String email = r.getString("EMAIL");
 		        		  Segnalazione s = new Segnalazione();
 		        		  s.setBody(body);
 		        		  s.setHead(head);
 		        		  s.setIdReport(id_report);
 		        		  s.setSerial(serial);
+		        		  s.setEmail(email);
 		        		  segnalazioni.add(s);
 		        		  }
 		          }
@@ -79,7 +81,7 @@ public class SegnalazioneDatabase {
 		          } else {
 		        	  while(r.next()) {
 		        		  int id_report = r.getInt("ID_REPORT");
-		        		  int serial = r.getInt("SERIAL");
+		        		  String serial = r.getString("SERIAL");
 		        		  String body = r.getString("BODY");
 		        		  String head = r.getString("HEAD");
 		        		  Segnalazione s = new Segnalazione();
