@@ -24,6 +24,8 @@ $(document).ready(function() {
     });
   });
 });
+
+
 $(document).ready(function() {
 	  $("#bottone-risposta").click(function(){
 	    var testo_msg = $("#testo").val();

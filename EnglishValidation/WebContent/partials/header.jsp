@@ -25,6 +25,8 @@
           "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
       menu += "<li><a href=\"" + request.getContextPath() + "/_areaAdmin/banUser.jsp\">Sospendi utente</a></li>";
       menu += "<li><a href=\"" + request.getContextPath() + "/_areaAdmin/segnalazioniFromSecretary.jsp\">Segnalazioni</a></li>";
+      menu +=
+              "<li><a href=\"" + request.getContextPath() + "/_areaSecretary/creaSegnalazioneToAdmin.jsp\">Segnala all'admin</a></li>";
     }
     
     else if(pageName.equals("banUser.jsp")){
@@ -36,7 +38,21 @@
               menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
                       + "/banUser.jsp\">Sospendi utente</a></li>";
           menu += "<li><a href=\"" + request.getContextPath() + "/_areaAdmin/segnalazioniFromSecretary.jsp\">Segnalazioni</a></li>";
+    
     }
+    
+    else if (pageName.equals("creaSegnalazioneToAdmin.jsp")) {
+        menu += "<li><a href=\"" + request.getContextPath() + "/" + pageFolder
+            + "/viewRequest.jsp\">Richieste</a></li>";
+        menu +=
+            "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
+            menu +=
+                    "<li><a href=\"" + request.getContextPath() + "/_areaSecretary/segnalazioniFromStudent.jsp\">Segnalazioni</a></li>";
+        menu +=
+                "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
+                + "/creaSegnalazioneToAdmin.jsp\">Segnala all'admin</a></li>";
+                }
+    
     else if(pageName.equals("segnalazioniFromSecretary.jsp")){
     	
     	menu += "<li><a href=\"" + request.getContextPath() + "/" + pageFolder
@@ -46,6 +62,8 @@
         menu += "<li><a href=\"" + request.getContextPath() + "/_areaAdmin/banUser.jsp\">Sospendi utente</a></li>";
         menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
                 + "/segnalazioniFromSecretary.jsp\">Segnalazioni</a></li>";
+        menu +=
+                "<li><a href=\"" + request.getContextPath() + "/_areaStudent/creaSegnalazioneToSecretary.jsp\">Invia Segnalazione</a></li>";
   }
     }
     
