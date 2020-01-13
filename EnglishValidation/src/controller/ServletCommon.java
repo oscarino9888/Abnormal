@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -141,6 +144,14 @@ public class ServletCommon extends HttpServlet {
         String idUser = request.getParameter("idUser");
         String newName = request.getParameter("newName");
 
+        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(newName);
+        boolean b = m.find();
+
+
+        if (newName.length() == 0 || newName.length() > 20 || b == true) {
+            throw new IllegalArgumentException("Formato non corretto");
+        }
         try {
           sql = "UPDATE user SET name = ? WHERE email = ?";
           stmt = conn.prepareStatement(sql);
@@ -165,6 +176,13 @@ public class ServletCommon extends HttpServlet {
       } else if (flag == 3) { // Aggiornamento Cognome
         String idUser = request.getParameter("idUser");
         String newSurname = request.getParameter("newSurname");
+        Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(newSurname);
+        boolean b = m.find();
+
+        if (newSurname.length() == 0 || newSurname.length() > 20 || b == true) {
+            throw new IllegalArgumentException("Formato non corretto");
+        }
 
         try {
           sql = "UPDATE user SET surname = ? WHERE email = ?";
