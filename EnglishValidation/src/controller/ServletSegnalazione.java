@@ -77,7 +77,39 @@ public class ServletSegnalazione extends HttpServlet {
 		    		}catch(Exception e) {
 		    			System.out.println(e.getMessage());
 		    		}
-		    	} 
+		    	}else if(flag == 2) { //FLAG DI RISPOSTA
+		    		String testo = request.getParameter("testo");
+		    		String email = request.getParameter("email");
+		    		String serial = request.getParameter("keyserial");
+		    		try {
+		    			//INSERISCO LA PRIMA SEGNALAZIONE NELLA TAB REPORT DEL DB
+		    			sql = "INSERT INTO REPORT(Body, Head, Serial) VALUES "+ "(?,?,?)";
+		    			stmt = conn.prepareStatement(sql,stmt.RETURN_GENERATED_KEYS);
+		    			System.out.println("body: " + testo);
+		    			stmt.setString(1, testo);
+		    			stmt.setString(2, "");
+		    			stmt.setString(3, serial);
+		    			 stmt.executeUpdate();
+		    			//PRENDO L'ID AUTO_INCREMENT DEL REPORT APPEAN CREATO 
+		    			 sql = "SELECT ID_REPORT FROM REPORT";
+		    			 stmt = conn.prepareStatement(sql);
+		    			 ResultSet r = stmt.executeQuery();
+		    			 r.last();
+		    				  int id = r.getInt(1);
+		    				//CREO IL RECORD IN SEND_R PE COLLEGARE LA SEGNALAZIONE ALL'UTENTE CHE L'HA CREATA
+		    				  sql = "INSERT INTO SEND_R VALUES (?,?)";
+				    			stmt = conn.prepareStatement(sql);
+				    			stmt.setString(1, email);
+				    			stmt.setInt(2, id);
+				    			stmt.executeUpdate();
+				    			result=1;
+				    		 conn.commit();
+		    			 
+		    		}catch(Exception e) {
+		    			System.out.println(e.getMessage());
+		    		}
+		    		
+		    	}
 		    }
 		    content="Aggiunta una segnalazione";
 		    redirect= request.getContextPath() + "/creaSegnalazioneToSecretary.jsp";
