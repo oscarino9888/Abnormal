@@ -104,7 +104,7 @@
       menu +=
           "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
       menu +=
-              "<li><a href=\"" + request.getContextPath() + "_areaStudent/creaSegnalazioneToSecretary.jsp\">Crea Segnalazione</a></li>";
+              "<li><a href=\"" + request.getContextPath() + "/_areaStudent/creaSegnalazioneToSecretary.jsp\">Crea Segnalazione</a></li>";
     }
     if (pageName.equals("firstForm.jsp")) {
       menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
@@ -116,7 +116,7 @@
       menu +=
           "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
       menu +=
-              "<li><a href=\"" + request.getContextPath() + "_areaStudent/creaSegnalazioneToSecretary.jsp\">Crea Segnalazione</a></li>";
+              "<li><a href=\"" + request.getContextPath() + "/_areaStudent/creaSegnalazioneToSecretary.jsp\">Crea Segnalazione</a></li>";
     }
     if (pageName.equals("uploadAttached.jsp")) {
       menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
@@ -124,7 +124,7 @@
       menu +=
           "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
       menu +=
-              "<li><a href=\"" + request.getContextPath() + "_areaStudent/creaSegnalazioneToSecretary.jsp\">Crea Segnalazione</a></li>";
+              "<li><a href=\"" + request.getContextPath() + "/_areaStudent/creaSegnalazioneToSecretary.jsp\">Crea Segnalazione</a></li>";
     }
     if (pageName.equals("signUp.jsp")) {
 		logoRedirect = request.getContextPath()+ck.getUrlRedirect();	//siccome signUp è raggiungibile solo quando non sono loggato
