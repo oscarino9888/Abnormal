@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 /**
  * Servlet implementation class ServletStudent.
  */
@@ -26,6 +29,7 @@ public class ServletSegnalazione extends HttpServlet {
 		    doPost(request, response);
 	 }
 	 public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		 Integer result = 0;
 		    String error = "";
 		    String content = "";
@@ -64,13 +68,25 @@ public class ServletSegnalazione extends HttpServlet {
 				    			stmt.setString(1, email);
 				    			stmt.setInt(2, id);
 				    			stmt.executeUpdate();
+				    			result=1;
 				    		 }
+		    			 conn.commit();
+		    			 
 		    		}catch(Exception e) {
 		    			System.out.println(e.getMessage());
 		    		}
 		    	} 
 		    }
-
+		    content="Aggiunta una segnalazione";
+		    redirect= request.getContextPath() + "/creaSegnalazioneToSecretary.jsp";
+		    JSONObject res = new JSONObject();
+		    res.put("result", result);
+		    res.put("error", error);
+		    res.put("content", content);
+		    res.put("redirect", redirect);
+		    PrintWriter out = response.getWriter();
+		    out.println(res);
+		    response.setContentType("json");
 	 }
 }
 	 

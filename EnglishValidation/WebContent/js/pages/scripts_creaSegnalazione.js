@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
   $("#bottone-invia").click(function(){
     var testo_msg = $("#testo").val();
@@ -8,10 +9,9 @@ $(document).ready(function() {
 	  async: false,
       url:  absolutePath + "/ServletSegnalazione",
       data : {
-				"testo" : testo,
+				"testo" : testo_msg,
 				"email" : email,
-				"flag" : 1
-															
+				"flag" : 1												
 			},
       success: function(msg)
       {

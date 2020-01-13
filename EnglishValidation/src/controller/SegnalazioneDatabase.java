@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import model.Segnalazione;;
 public class SegnalazioneDatabase { 
@@ -96,7 +97,7 @@ public class SegnalazioneDatabase {
 
 		 return segnalazioni;
 	}
-	public boolean checkSegnalazioneUser(String email){
+	public boolean checkSegnalazioneUser(String email) throws SQLException{
 		 PreparedStatement stmt = null; //statement di tes
 		 ArrayList<Segnalazione> segnalazioni = new ArrayList<Segnalazione>();
 		 Connection conn = new DbConnection().getInstance().getConn();
@@ -111,12 +112,16 @@ public class SegnalazioneDatabase {
 					return true;
 				 }else {
 					 return false;
+					 
 				 }
+				 
+				 
 				}catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
-			 	
-		 }
+			 
+		 }conn.commit();
+		 
 		 return false;
 	}
 	public ArrayList<Segnalazione> getSegnalazioneListFromSerial(String serial){
