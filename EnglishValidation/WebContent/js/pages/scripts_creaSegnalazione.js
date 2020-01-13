@@ -36,9 +36,9 @@ $(document).ready(function() {
 		  async: false,
 	      url:  absolutePath + "/ServletSegnalazione",
 	      data : {
-					"testo" : testo,
+					"testo" : testo_msg,
 					"email" : email,
-					"flag" : 1
+					"flag" : 2
 																
 				},
 	      success: function(msg)

@@ -48,11 +48,12 @@ public class ServletSegnalazione extends HttpServlet {
 		    		String email = request.getParameter("email");
 		    		try {
 		    			//INSERISCO LA PRIMA SEGNALAZIONE NELLA TAB REPORT DEL DB
-		    			sql = "INSERT INTO REPORT VALUES (?,?,?)";
-		    			stmt = conn.prepareStatement(sql);
-		    			stmt.setString(1, "key:" + email);
-		    			stmt.setString(2, "");
-		    			stmt.setString(3, testo);
+		    			sql = "INSERT INTO REPORT(Body, Head, Serial) VALUES "+ "(?,?,?)";
+		    			stmt = conn.prepareStatement(sql,stmt.RETURN_GENERATED_KEYS);
+		    			stmt.setString(1, testo);
+		    			stmt.setString(2, "...");
+		    			stmt.setString(3, "key:" + email);
+
 		    			 stmt.executeUpdate();
 		    			//PRENDO L'ID AUTO_INCREMENT DEL REPORT APPEAN CREATO 
 		    			 sql = "SELECT ID_REPORT FROM REPORT WHERE SERIAL = ?";
