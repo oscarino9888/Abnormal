@@ -3,6 +3,7 @@ $(document).ready(function() {
   $("#bottone-invia").click(function(){
     var testo_msg = $("#testo").val();
     var email = $("#email").val();
+    var head = $("#headsend").val();
     $.ajax({
       type: "POST",
 	  dataType: 'JSON',
@@ -11,7 +12,8 @@ $(document).ready(function() {
       data : {
 				"testo" : testo_msg,
 				"email" : email,
-				"flag" : 1												
+				"flag" : 1,
+				"head" : head,
 			},
       success: function(msg)
       {
@@ -52,5 +54,3 @@ $(document).ready(function() {
 	    });
 	  });
 	});
-
-

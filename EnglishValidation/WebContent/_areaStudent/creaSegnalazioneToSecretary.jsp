@@ -28,6 +28,9 @@ body {
   padding: 0 20px;
 }
 
+
+
+
 .container {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
@@ -75,7 +78,7 @@ body {
 
 <body>
 
-	
+		<div class="page-wrapper">
 
 		<!-- Preloader -->
 		<!--  <div class="preloader"></div> -->
@@ -86,6 +89,13 @@ body {
 			<jsp:param name="pageFolder" value="<%= pageFolder %>" />
 		</jsp:include>
 
+<div class="sidebar-page-container basePage uploadAttachedPage">
+			<div class="auto-container">
+				<div class="row clearfix">
+					<div class="content-side col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="content">
+							<div class="news-block-seven">
+								<div class="form-group">
 
 		<!-- Start Body  -->
 		<% if(checkSegnalazione) { 
@@ -110,7 +120,7 @@ body {
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
 			  
 		<br><form id="form-risposta">
-		<textarea id="testo-risposta" rows="5" cols="5"></textarea>
+		<textarea id="testo-risposta" rows="20" cols="20"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>> 
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
 			<% } %>
@@ -119,14 +129,29 @@ body {
 		<!--  UTENTE NON HA ANCORA NESSUNA SEGNALAZIONE, CARICAMENTO DELLA CREAZIONE -->
 		Contatta la segreteria tramite il box qui sotto, inserisci un messaggio e premi il tasto invia.
 	     
+	     <div
+									class="col-lg-6 col-md-6 col-sm-12 col-xs-12 login-container">
+									<div class="panel">
 		<form id="form-invia">
-		<textarea id="testo" rows="10" cols="10"></textarea><br>
+		<fieldset><legend>Head</legend>
+		<input type="text" id="headsend"class="text-center"><br>
+		</fieldset>
+		<fieldset><legend>Messaggio</legend>
+		<textarea rows="3" cols="10" id="testo" class="text-center" > </textarea>
+		</fieldset>
 		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
-		<input type="button" id="bottone-invia" value="Invia"></form>
+		<input type="button" id="bottone-invia" class="text-center" value="Invia"></form>
 
 		<% } %>
 		
-	
+	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+			</div>
 					<jsp:include page="/partials/footer.jsp" />
 		<!--  END BODY -->
 <jsp:include page="/partials/includes.jsp" />

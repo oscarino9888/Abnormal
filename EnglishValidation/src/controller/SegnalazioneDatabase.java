@@ -70,7 +70,9 @@ public class SegnalazioneDatabase {
 						 + "INNER JOIN USER AS U ON S.EMAIL = U.EMAIL "
 						 + "WHERE U.USER_TYPE = '1'"; //USER-TYPE DELLA SEGRETERIA DA DEFINIRE
 				 stmt = conn.prepareStatement(sql);
-			       
+	
+				
+				 
 		          ResultSet r = stmt.executeQuery();
 		          if (r.wasNull()) {
 		        	  System.out.println("Errore nell'esecuzione della Query");

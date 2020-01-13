@@ -46,12 +46,13 @@ public class ServletSegnalazione extends HttpServlet {
 		    	if (flag == 1) { //CREAZIONE PIMA SEGNALAZIONE DA PARTE DELLO STUDENTE
 		    		String testo = request.getParameter("testo");
 		    		String email = request.getParameter("email");
+		    		String head = request.getParameter("head");
 		    		try {
 		    			//INSERISCO LA PRIMA SEGNALAZIONE NELLA TAB REPORT DEL DB
 		    			sql = "INSERT INTO REPORT(Body, Head, Serial) VALUES "+ "(?,?,?)";
 		    			stmt = conn.prepareStatement(sql,stmt.RETURN_GENERATED_KEYS);
 		    			stmt.setString(1, testo);
-		    			stmt.setString(2, "...");
+		    			stmt.setString(2, head);
 		    			stmt.setString(3, "key:" + email);
 
 		    			 stmt.executeUpdate();
