@@ -78,7 +78,8 @@ for(int i = 0; i < listSegnalazioni.size(); i++){
 		<textarea id="testo-risposta" rows="5" cols="10"></textarea>
 	   <input type="hidden" id="email-risposta" value="segreteria@unisa.it">
 	   <input type="hidden" id="keyserial" value="<%=keySerial %>">
-		<br> <input type="button" id="bottone-risposta" value="invia"></form>
+		<br> <input type="button" id="bottone-risposta" value="invia">
+		<br><br><input type="button" id="bottone-cancella" value="Elimina Chat"></form></form>
 <jsp:include page="/partials/includes.jsp" />
 <script>
 $(document).ready(function() {
@@ -108,6 +109,28 @@ $(document).ready(function() {
 	      }
 	    });
 	  });
+	  $("#bottone-cancella").click(function(){
+		    var keySerial = $("#keyserial").val();
+		    $.ajax({
+		      type: "POST",
+			  dataType: 'JSON',
+			  async: false,
+		      url:  absolutePath + "/ServletSegnalazione",
+		      data : {
+						"keyserial": keySerial,
+						"flag" : 3
+					},
+		      success: function(msg)
+		      {
+		    	alert("Chiusura chat...Aggiornare la pagina delle segnalazioni");
+		        window.close();
+		      },
+		      error: function()
+		      {
+		        alert("Chiamata fallita, si prega di riprovare...");
+		      }
+		    });
+		  });
 	});
 
 </script>
