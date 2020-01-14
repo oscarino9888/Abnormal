@@ -50,6 +50,27 @@ $(document).ready(function() {
 	      }
 	    });
 	  });
+  $("#bottone-cancella").click(function(){
+	    var keySerial = $("#keyserial").val();
+	    $.ajax({
+	      type: "POST",
+		  dataType: 'JSON',
+		  async: false,
+	      url:  absolutePath + "/ServletSegnalazione",
+	      data : {
+					"keyserial": keySerial,
+					"flag" : 3
+				},
+	      success: function(msg)
+	      {
+	        location.reload(true);
+	      },
+	      error: function()
+	      {
+	        alert("Chiamata fallita, si prega di riprovare...");
+	      }
+	    });
+	  });
 });
 
 
