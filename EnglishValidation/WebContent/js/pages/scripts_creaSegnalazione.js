@@ -17,7 +17,7 @@ $(document).ready(function() {
 			},
       success: function(msg)
       {
-        $("#risultato").html(msg);
+        location.reload(true);
       },
       error: function()
       {
@@ -39,6 +39,27 @@ $(document).ready(function() {
 					"email" : email,
 					"keyserial": keySerial,
 					"flag" : 2
+				},
+	      success: function(msg)
+	      {
+	        location.reload(true);
+	      },
+	      error: function()
+	      {
+	        alert("Chiamata fallita, si prega di riprovare...");
+	      }
+	    });
+	  });
+  $("#bottone-cancella").click(function(){
+	    var keySerial = $("#keyserial").val();
+	    $.ajax({
+	      type: "POST",
+		  dataType: 'JSON',
+		  async: false,
+	      url:  absolutePath + "/ServletSegnalazione",
+	      data : {
+					"keyserial": keySerial,
+					"flag" : 3
 				},
 	      success: function(msg)
 	      {

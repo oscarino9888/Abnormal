@@ -16,7 +16,7 @@
 <style>
 body {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 300px;
   padding: 0 20px;
 }
 
@@ -45,7 +45,7 @@ body {
 .container img {
   float: left;
   max-width: 40px;
-  width: 100%;
+  width: 50%;
   margin-right: 20px;
   border-radius: 50%;
 }
@@ -54,16 +54,6 @@ body {
   float: right;
   margin-left: 20px;
   margin-right:0;
-}
-
-.time-right {
-  float: right;
-  color: #aaa;
-}
-
-.time-left {
-  float: left;
-  color: #999;
 }
 </style>
 </head>
@@ -88,7 +78,8 @@ for(int i = 0; i < listSegnalazioni.size(); i++){
 		<textarea id="testo-risposta" rows="5" cols="10"></textarea>
 	   <input type="hidden" id="email-risposta" value="segreteria@unisa.it">
 	   <input type="hidden" id="keyserial" value="<%=keySerial %>">
-		<br> <input type="button" id="bottone-risposta" value="invia"></form>
+		<br> <input type="button" id="bottone-risposta" value="invia">
+		<br><br><input type="button" id="bottone-cancella" value="Elimina Chat"></form></form>
 <jsp:include page="/partials/includes.jsp" />
 <script>
 $(document).ready(function() {
@@ -118,6 +109,28 @@ $(document).ready(function() {
 	      }
 	    });
 	  });
+	  $("#bottone-cancella").click(function(){
+		    var keySerial = $("#keyserial").val();
+		    $.ajax({
+		      type: "POST",
+			  dataType: 'JSON',
+			  async: false,
+		      url:  absolutePath + "/ServletSegnalazione",
+		      data : {
+						"keyserial": keySerial,
+						"flag" : 3
+					},
+		      success: function(msg)
+		      {
+		    	alert("Chiusura chat...Aggiornare la pagina delle segnalazioni");
+		        window.close();
+		      },
+		      error: function()
+		      {
+		        alert("Chiamata fallita, si prega di riprovare...");
+		      }
+		    });
+		  });
 	});
 
 </script>

@@ -109,6 +109,30 @@ public class ServletSegnalazione extends HttpServlet {
 		    			System.out.println(e.getMessage());
 		    		}
 		    		
+		    	}else if(flag == 3) {
+		    		String keyserial = request.getParameter("keyserial");
+		    		try {
+		    			// TROVO TUTTE LE SEGNALAZIONI CON IL KEYSERIAL DA ELIMINARE
+		    			sql = "SELECT ID_REPORT FROM REPORT WHERE SERIAL = ?";
+		    			stmt = conn.prepareStatement(sql);
+		    			stmt.setString(1,keyserial);
+		    			ResultSet r = stmt.executeQuery();
+		    			while(r.next()) { //PER TUTTI I RECORD AVENTI KEYSERIAL DA ELIMINARE
+		    				int id = r.getInt(1);
+		    				//ELIMINO PRIMA IL RECORD DA SEND_R 
+		    				sql = "DELETE FROM SEND_R WHERE ID_REPORT = ?"; 
+		    				stmt  = conn.prepareStatement(sql);
+		    				stmt.setInt(1, id);
+		    				stmt.executeUpdate();
+		    				sql = "DELETE FROM REPORT WHERE ID_REPORT = ?";
+		    				stmt = conn.prepareStatement(sql);
+		    				stmt.setInt(1,id);
+		    				stmt.executeUpdate();
+		    			}
+		    		}catch (Exception e) {
+		    			System.out.println(e.getMessage());
+
+		    		}
 		    	}
 		    }
 		    content="Aggiunta una segnalazione";
