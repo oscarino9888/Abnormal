@@ -127,11 +127,8 @@ padding-bottom: 40px;
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
 			  
 		<br><form id="form-risposta">
-		<fieldset class="heads"><legend>Head</legend>
-		<input type="text" id="headresponse"class="text-center" placeholder="Header del messaggio"><br>
-		</fieldset>
-		<fieldset class="messages"><legend>Messaggio</legend>
-		<textarea id="testo-risposta" rows="20" cols="20"></textarea>
+		<fieldset class="messages"><legend>Messaggio</legend></fieldset>
+		<textarea id="testo-risposta" rows="5" cols="20"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>>
 	   <input type="hidden" id="keyserial" value="<%=keySerial %>"> 
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
