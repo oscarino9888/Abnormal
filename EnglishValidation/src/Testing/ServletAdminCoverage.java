@@ -39,7 +39,7 @@ public class ServletAdminCoverage {
         ResultSet resultSet = stmt.executeQuery();
         if(!resultSet.isBeforeFirst()) 
         {
-        	sql = "INSERT INTO user VALUES ('p.prova@studenti.unisa.it', 'Thomas', 'Amendola', 'M', 'Gi230198', 0);";
+        	sql = "INSERT INTO user VALUES ('p.prova@studenti.unisa.it', 'Thomas', 'Amendola', 'M', 'Gi230198', 0, null);";
             stmt = conn.prepareStatement(sql);
             stmt.executeUpdate();
         }

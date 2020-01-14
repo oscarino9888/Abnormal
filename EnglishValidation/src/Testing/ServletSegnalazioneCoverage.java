@@ -1,42 +1,25 @@
 package Testing;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import controller.DbConnection;
-import controller.ServletBan;
-import controller.ServletCommon;
+import controller.ServletSegnalazione;
+import interfacce.UserInterface;
+import model.Student;
 
-public class ServletBanTest {
+public class ServletSegnalazioneCoverage {
 
-	public class MockObject {
-		public MockObject (String email, String ban_user) {
-			this.email = email;
-			this.ban_user = ban_user;
-		}
-
-		public void setRequest (MockHttpServletRequest request) {
-			request.addParameter("email", email);
-	        request.addParameter("ban_user", ban_user);
-		} 
-
-		private String email;
-		private String ban_user;
-	}
-
-    private ServletBan servlet;
+    private ServletSegnalazione servlet;
     private MockHttpServletRequest request;
     private MockHttpServletResponse response;
 
@@ -47,10 +30,10 @@ public class ServletBanTest {
 
     @Before
     public void setUp() throws SQLException {
-        servlet = new ServletBan();
+        servlet = new ServletSegnalazione();
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
-
+        
         sql = "SELECT * FROM user  WHERE EMAIL = 'p.prova@studenti.unisa.it';";
         stmt = conn.prepareStatement(sql);
         ResultSet resultSet = stmt.executeQuery();
@@ -62,46 +45,49 @@ public class ServletBanTest {
         }
     }
 
-
     @Test
-    public void test1() throws Exception {
-
+    public void coverage1() throws Exception {
+    	
     	MockHttpServletRequest request = new MockHttpServletRequest();  
         MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("p.prova@studenti.unisa.it", "2100-09-01");
 
-        x.setRequest(request);
-
+        request.setParameter("flag", "1");
+        request.setParameter("testo", "test");
+		request.setParameter("email", "p.prova@studenti.unisa.it");
+		request.setParameter("head", "test");
+        
     	servlet.doPost(request, response);
 
-        assertEquals("_areaAdmin/banUser.jsp", response.getForwardedUrl());
+        assertEquals("json", response.getContentType());
     }
-
+    
     @Test
-    public void test2() throws Exception {
-
+    public void coverage2() throws Exception {
+    	
     	MockHttpServletRequest request = new MockHttpServletRequest();  
         MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("aaaaaaa", "2100-09-01");
 
-        x.setRequest(request);
+        request.setParameter("flag", "2");
+        request.setParameter("testo", "test");
+		request.setParameter("email", "p.prova@studenti.unisa.it");
+		request.setParameter("keyserial", "key:p.prova@studenti.unisa.it");
+        
+    	servlet.doPost(request, response);
 
-    	Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
-
-        if(e == null) fail (); else Assert.assertEquals("Utente non registrato", e.getMessage());
+        assertEquals("json", response.getContentType());
     }
-
+    
     @Test
-    public void test3() throws Exception {
-
+    public void coverage3() throws Exception {
+    	
     	MockHttpServletRequest request = new MockHttpServletRequest();  
         MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("p.prova@studenti.unisa.it", "aaaaaaaa");
 
-        x.setRequest(request);
+        request.setParameter("flag", "3");
+		request.setParameter("keyserial", "key:p.prova@studenti.unisa.it");
+        
+    	servlet.doPost(request, response);
 
-        Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
-
-        if(e == null) fail (); else Assert.assertEquals("Formato non corretto", e.getMessage());
+        assertEquals("json", response.getContentType());
     }
 }
