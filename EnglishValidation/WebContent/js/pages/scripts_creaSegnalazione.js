@@ -39,7 +39,6 @@ $(document).ready(function() {
 					"email" : email,
 					"keyserial": keySerial,
 					"flag" : 2
-																
 				},
 	      success: function(msg)
 	      {

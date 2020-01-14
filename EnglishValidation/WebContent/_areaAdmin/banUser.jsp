@@ -9,9 +9,6 @@
 	ArrayList<Student> student = new ArrayList<Student>();
 	StudentDatabase datb=new StudentDatabase();
 	student=datb.getStudents();
-			
-	
-	
 	CheckSession ck = new CheckSession(pageFolder, pageName, request.getSession());
 	if(!ck.isAllowed()){
 	  response.sendRedirect(request.getContextPath()+ck.getUrlRedirect());  
