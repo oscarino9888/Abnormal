@@ -114,7 +114,7 @@ body {
 			  				<p><%=segnalazioni.get(i).getBody()%></p>
 						</div>
 				<% } else { %>
-				<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLO STUDENTE. CARICO IL LAYOUT DELLO STUDENTE -->
+				<!-- LA SEGNALAZIONE IN QUESTIONE E' DELL'ADMIN. CARICO IL LAYOUT DELLO STUDENTE -->
 					<div class="container ">
 			  			<img src="" alt="admin">
 			  		<p><%=segnalazioni.get(i).getBody()%></p>
