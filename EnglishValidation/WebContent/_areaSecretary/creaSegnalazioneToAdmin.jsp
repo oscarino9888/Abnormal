@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1" import="controller.CheckSession"%>
 <%@ page
-	import="model.Student,controller.SegnalazioneDatabase,model.Segnalazione,java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
+	import="model.Secretary,controller.SegnalazioneDatabase,model.Segnalazione,java.util.*,model.Request,controller.DbConnection,controller.ServletAdmin,java.sql.ResultSet,java.sql.Statement"%>
 
 <%
 	String pageName = "creaSegnalazioneToAdmin.jsp";
@@ -13,7 +13,7 @@
 	  response.sendRedirect(request.getContextPath()+ck.getUrlRedirect());  
 	}
 	SegnalazioneDatabase datb = new SegnalazioneDatabase();
-	Student stud = (Student) request.getSession().getAttribute("user");
+	Secretary stud = (Secretary) request.getSession().getAttribute("user");
 	String keySerial = "key:fferrucci@unisa.it";
 %>
 <!DOCTYPE html>
@@ -100,7 +100,7 @@ body {
 		<%  ArrayList<Segnalazione> segnalazioni = datb.getSegnalazioneListFromSerial(keySerial);
 			if(segnalazioni.isEmpty()){ %>
 					<br><form id="form-risposta">
-			<textarea id="testo-risposta" rows="20" cols="20"></textarea>
+					<fieldset class="messages"><legend>Messaggio</legend></fieldset><textarea id="testo-risposta" rows="10" cols="40"></textarea>
 	   	<input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>>
 	   	<input type="hidden" id="keyserial" value="<%=keySerial %>"> 
 			<br> <input type="button" id="bottone-risposta" value="invia"></form>
@@ -125,7 +125,7 @@ body {
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
 			  
 		<br><form id="form-risposta">
-		<textarea id="testo-risposta" rows="20" cols="20"></textarea>
+	<fieldset class="messages"><legend>Messaggio</legend></fieldset><textarea id="testo-risposta" rows="10" cols="40"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>>
 	   <input type="hidden" id="keyserial" value="<%=keySerial %>"> 
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
