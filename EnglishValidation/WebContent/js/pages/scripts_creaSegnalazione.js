@@ -17,7 +17,7 @@ $(document).ready(function() {
 			},
       success: function(msg)
       {
-        $("#risultato").html(msg);
+        location.reload(true);
       },
       error: function()
       {
