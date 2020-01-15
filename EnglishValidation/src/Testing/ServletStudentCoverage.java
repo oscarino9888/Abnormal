@@ -454,7 +454,7 @@ public class ServletStudentCoverage {
         assertEquals("json", response.getContentType());
 
         /*
-        sql = "INSERT INTO user VALUES ('p.prova@studenti.unisa.it', 'Thomas', 'Amendola', 'M', 'Gi230198', 0);";
+        sql = "INSERT INTO user VALUES ('p.prova@studenti.unisa.it', 'Thomas', 'Amendola', 'M', 'Gi230198', 0, null);";
         stmt = conn.prepareStatement(sql);
         stmt.executeUpdate();*/
 
