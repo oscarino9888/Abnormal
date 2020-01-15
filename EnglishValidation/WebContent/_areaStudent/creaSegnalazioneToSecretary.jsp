@@ -112,13 +112,13 @@ padding-bottom: 40px;
 					%>
 					<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLA SEGRETERIA. CARICO IL LAYOUT PER LA SEGRETERIA -->
 						<div class="container darker">
-			  				<img src="" alt="Avatar" class="right">
+			  				<img src="https://img.icons8.com/officel/80/000000/administrator-female.png" alt="Segreteria" class="right">
 			  				<p><%=segnalazioni.get(i).getBody()%></p>
 						</div>
 				<% } else { %>
 				<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLO STUDENTE. CARICO IL LAYOUT DELLO STUDENTE -->
 					<div class="container">
-			  			<img src="" alt="Avatar">
+			  			<img src="https://img.icons8.com/dusk/64/000000/student-male.png" alt="Studente">
 			  		<p><%=segnalazioni.get(i).getBody()%></p>
 						</div>
 				<% } 
@@ -128,7 +128,7 @@ padding-bottom: 40px;
 			  
 		<br><form id="form-risposta">
 		<fieldset class="messages"><legend>Messaggio</legend></fieldset>
-		<textarea id="testo-risposta" rows="5" cols="20"></textarea>
+		<textarea id="testo-risposta" rows="5" cols="20" placeholder="Scrivi Qui"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>>
 	   <input type="hidden" id="keyserial" value="<%=keySerial %>"> 
 		<br> <input type="button" id="bottone-risposta" value="invia"></form>
@@ -146,7 +146,7 @@ padding-bottom: 40px;
 		<input type="text" id="headsend"class="text-center" placeholder="Header del messaggio"><br>
 		</fieldset>
 		<fieldset class="messages"><legend>Messaggio</legend>
-		<textarea rows="3" cols="10" id="testo" class="text-center" > </textarea>
+		<textarea rows="3" cols="10" id="testo" class="text-center" placeholder="Scrivi Qui" > </textarea>
 		</fieldset>
 		<input type="hidden" id="email" value= <%=stud.getEmail()%>> 
 		<input type="button" id="bottone-invia" class="text-center" value="Invia"></form>
