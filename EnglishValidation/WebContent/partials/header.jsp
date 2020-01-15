@@ -71,13 +71,13 @@
   
    
     if (pageName.equals("viewRequest.jsp")) {
-      menu += "<li><a href=\"" + request.getContextPath() + "/" + pageFolder
+      menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
           + "/viewRequest.jsp\">Richieste</a></li>";
       menu +=
           "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
       menu +=
               "<li><a href=\"" + request.getContextPath() + "/_areaSecretary/segnalazioniFromStudent.jsp\">Segnalazioni</a></li>";
-      menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/_areaSecretary/creaSegnalazioneToAdmin.jsp\">Admin</a></li>";    
+      menu += "<li><a href=\"" + request.getContextPath() + "/_areaSecretary/creaSegnalazioneToAdmin.jsp\">Admin</a></li>";    
     }
     
     else if (pageName.equals("segnalazioniFromStudent.jsp")) {
@@ -96,9 +96,9 @@
     	        menu +=
     	            "<li><a href=\"" + request.getContextPath() + "/logout.jsp\">Disconnetti</a></li>";
     	        menu +=
-    	                "<li class=\"current\"><a href=\"" + request.getContextPath() + "/" + pageFolder
+    	                "<li ><a href=\"" + request.getContextPath() + "/" + pageFolder
     	                + "/segnalazioniFromStudent.jsp\">Segnalazioni</a></li>";
-    	        menu += "<li><a href=\"" + request.getContextPath() + "/_areaSecretary/creaSegnalazioneToAdmin.jsp\">Admin</a></li>";    
+    	        menu += "<li class=\"current\"><a href=\"" + request.getContextPath() + "/_areaSecretary/creaSegnalazioneToAdmin.jsp\">Admin</a></li>";    
       }
     
     
