@@ -51,6 +51,14 @@ public class ServletBanTest {
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
 
+        sql = "DELETE FROM attached WHERE FK_USER = 'p.prova@studenti.unisa.it';";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+
+        sql = "DELETE FROM request WHERE FK_USER = 'p.prova@studenti.unisa.it';";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+        
         sql = "SELECT * FROM user  WHERE EMAIL = 'p.prova@studenti.unisa.it';";
         stmt = conn.prepareStatement(sql);
         ResultSet resultSet = stmt.executeQuery();
@@ -64,7 +72,67 @@ public class ServletBanTest {
 
 
     @Test
-    public void test1() throws Exception {
+    public void tc_6_1() throws Exception {
+
+    	MockHttpServletRequest request = new MockHttpServletRequest();  
+        MockHttpServletResponse response = new MockHttpServletResponse();  
+        MockObject x = new MockObject("p", "2100-09-01");
+
+        x.setRequest(request);
+
+        Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
+
+        if(e == null) fail (); else Assert.assertEquals("Utente non registrato", e.getMessage());
+    }
+
+    @Test
+    public void tc_6_2() throws Exception {
+
+    	MockHttpServletRequest request = new MockHttpServletRequest();  
+        MockHttpServletResponse response = new MockHttpServletResponse();  
+        MockObject x = new MockObject("provaprova", "2100-09-01");
+
+        x.setRequest(request);
+
+    	Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
+
+        if(e == null) fail (); else Assert.assertEquals("Utente non registrato", e.getMessage());
+    }
+
+    @Test
+    public void tc_6_3() throws Exception {
+
+    	sql = "DELETE FROM user WHERE EMAIL = 'p.prova@studenti.unisa.it';";
+        stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+    	
+    	MockHttpServletRequest request = new MockHttpServletRequest();  
+        MockHttpServletResponse response = new MockHttpServletResponse();  
+        MockObject x = new MockObject("p.prova@studenti.unisa.it", "2100-09-01");
+
+        x.setRequest(request);
+
+        Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
+
+        if(e == null) fail (); else Assert.assertEquals("Utente non registrato", e.getMessage());
+    }
+    
+    @Test
+    public void tc_6_4() throws Exception {
+
+    	MockHttpServletRequest request = new MockHttpServletRequest();  
+        MockHttpServletResponse response = new MockHttpServletResponse();  
+        MockObject x = new MockObject("p.prova@studenti.unisa.it", "");
+
+        x.setRequest(request);
+
+        Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
+
+        if(e == null) fail (); else Assert.assertEquals("Formato non corretto", e.getMessage());
+    }
+    
+    @Test
+    public void tc_6_5() throws Exception {
 
     	MockHttpServletRequest request = new MockHttpServletRequest();  
         MockHttpServletResponse response = new MockHttpServletResponse();  
@@ -75,33 +143,5 @@ public class ServletBanTest {
     	servlet.doPost(request, response);
 
         assertEquals("_areaAdmin/banUser.jsp", response.getForwardedUrl());
-    }
-
-    @Test
-    public void test2() throws Exception {
-
-    	MockHttpServletRequest request = new MockHttpServletRequest();  
-        MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("aaaaaaa", "2100-09-01");
-
-        x.setRequest(request);
-
-    	Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
-
-        if(e == null) fail (); else Assert.assertEquals("Utente non registrato", e.getMessage());
-    }
-
-    @Test
-    public void test3() throws Exception {
-
-    	MockHttpServletRequest request = new MockHttpServletRequest();  
-        MockHttpServletResponse response = new MockHttpServletResponse();  
-        MockObject x = new MockObject("p.prova@studenti.unisa.it", "aaaaaaaa");
-
-        x.setRequest(request);
-
-        Exception e = Assertions.assertThrows(Exception.class, () -> new ServletBan().doPost(request, response));
-
-        if(e == null) fail (); else Assert.assertEquals("Formato non corretto", e.getMessage());
     }
 }
