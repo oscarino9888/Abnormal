@@ -110,13 +110,13 @@ body {
 					%>
 					<!-- LA SEGNALAZIONE IN QUESTIONE E' DELLA SEGRETERIA. CARICO IL LAYOUT PER LA SEGRETERIA -->
 						<div class="container darker">
-			  				<img src="" alt="segreteria" class="right">
+			  				<img src="https://img.icons8.com/officel/80/000000/administrator-female.png" alt="segreteria" class="right">
 			  				<p><%=segnalazioni.get(i).getBody()%></p>
 						</div>
 				<% } else { %>
 				<!-- LA SEGNALAZIONE IN QUESTIONE E' DELL'ADMIN. CARICO IL LAYOUT DELLO STUDENTE -->
 					<div class="container ">
-			  			<img src="" alt="admin">
+			  			<img src="https://img.icons8.com/officel/80/000000/administrator-female.png" alt="admin">
 			  		<p><%=segnalazioni.get(i).getBody()%></p>
 						</div>
 				<% } 
@@ -125,7 +125,7 @@ body {
 			  CARICO IL FORM DI RISPOSTA DA PARTE DELL'UTENTE -->
 			  
 		<br><form id="form-risposta">
-		<fieldset class="messages"><legend>Messaggio</legend></fieldset><textarea id="testo-risposta" rows="10" cols="40"></textarea>
+		<fieldset class="messages"><legend>Messaggio</legend></fieldset><textarea id="testo-risposta" rows="10" cols="40" placeholder="Scrivi Qui"></textarea>
 	   <input type="hidden" id="email-risposta" value= <%=stud.getEmail()%>>
 	   <input type="hidden" id="keyserial" value="<%=keySerial %>"> 
 		<br> <input type="button" id="bottone-risposta" value="invia"><br><br><input type="button" id="bottone-cancella" value="Pulisci chat"></form>

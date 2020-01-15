@@ -63,23 +63,23 @@ ArrayList<Segnalazione> listSegnalazioni = datb.getSegnalazioneListFromSerial(ke
 for(int i = 0; i < listSegnalazioni.size(); i++){
 	if(listSegnalazioni.get(i).getEmail().equals("segreteria@unisa.it")){ %>
 		<div class="container">
-			  			<img src="" alt="Segreteria">
+			  			<img src="https://img.icons8.com/officel/80/000000/administrator-female.png" alt="Segreteria">
 			  				<p><%=listSegnalazioni.get(i).getBody()%></p>
 		</div>
 	<% }else{ %>
 		<div class="container darker">
-			  				<img src="" alt="Studente" class="right">
+			  				<img src="https://img.icons8.com/dusk/64/000000/student-male.png" alt="Studente" class="right">
 			  				<p><%=listSegnalazioni.get(i).getBody()%></p>
 		</div>
 	<%}
 }
 %>
 <br><form id="form-risposta">
-		<textarea id="testo-risposta" rows="5" cols="10"></textarea>
+		<textarea id="testo-risposta" rows="5" cols="40" placeholder="Scrivi Qui"></textarea>
 	   <input type="hidden" id="email-risposta" value="segreteria@unisa.it">
 	   <input type="hidden" id="keyserial" value="<%=keySerial %>">
-		<br> <input type="button" id="bottone-risposta" value="invia">
-		<br><br><input type="button" id="bottone-cancella" value="Elimina Chat"></form></form>
+		<br><p align="center"> <input type="button" id="bottone-risposta" value="Invia">
+		<br><br><input type="button" id="bottone-cancella" value="Elimina Chat"></p></form>
 <jsp:include page="/partials/includes.jsp" />
 <script>
 $(document).ready(function() {
